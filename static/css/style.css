@@ -1,0 +1,208 @@
+﻿
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+
+h2 {
+    padding-top:50px;
+    text-transform: uppercase;  
+    padding-bottom:20px;  
+    color:#000;
+}
+h3 {
+    padding-top:30px;
+     padding-bottom:40px;
+     text-align:center;
+     font-weight:900;
+     text-transform:uppercase;
+}
+section {
+    padding-top:30px;
+    padding-bottom:40px;
+}
+.just-pad {
+    padding-bottom:50px;
+    padding-top:80px;
+}
+
+p {
+    padding:10px 0px;
+}
+ a {
+  text-decoration: none;
+  color: white;
+ }
+/*=====================================
+  ESTILO DEL NAVBAR 
+    ===================================*/
+
+.logo-custom {
+     max-height:43px;
+
+}
+.logo-custom2{
+    max-height: 300px;
+}
+#menu {
+    background-color:#4CAF50;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1px;
+   
+}
+/*.navbar-inverse {
+border-color:#fff;
+}
+.navbar-inverse .navbar-nav > li > a,.navbar-inverse .navbar-nav > li > a:hover {
+color: #4CAF50;
+}*/
+
+.home-mail {
+    font-size:12px; 
+    font-weight:normal;
+    padding-left:5px;
+}
+/*=====================================
+  ESTILOS DE HEADER
+===================================*/
+
+
+.header-sec {
+  
+padding-top: 10px;
+padding-bottom: 60px;
+background: url(static/media/logo.png) no-repeat center center;
+padding: 0;
+-webkit-background-size: cover;
+background-size: cover;
+ color:#fff;
+ background-attachment:fixed;
+}
+.header-sec .overlay{
+    background-color:#4CAF50;
+min-height: 500px;
+}
+    .header-sec h2 {
+        color:#fff;
+        padding-top:150px;
+    }
+
+
+
+    /*=====================================
+  ESILOS DE CONTACTO
+    ===================================*/
+
+
+.testi-sec {
+  
+    padding-top: 10px;
+    padding-bottom: 60px;
+    background: url(static/media/logo.png) no-repeat center center;
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color:#fff;
+    background-attachment:fixed;
+
+}
+.testi-sec .overlay{
+    background-color:#4CAF50; 
+    min-height: 300px;
+}
+    .testi-sec h3 {
+        color:#fff;
+        padding-top:60px;
+        padding-bottom:30px;
+    }
+
+.testi-sec h4 {
+    line-height:35px;
+}
+
+
+/*=====================================
+  ESTILOS DE MENSAJES DESPUES DEL CONTACTO JAJAJAJ
+    ===================================*/
+
+.price-sec {
+  
+    padding-top: 40px;
+    padding-bottom: 60px;
+    color:#fff;
+   
+
+}
+    .price-sec span {
+        font-size:90px;
+    }
+
+.single-price {
+    background-color:#4CAF50;
+    padding:50px;
+}
+.multi-price {
+    background-color:#4CAF50;
+    padding:50px;
+}
+  /*=====================================
+  ESTILOS REDES SOCIALES
+    ===================================*/
+.contact {
+    font-size:20px;
+    line-height:35px;
+}
+ /*=====================================
+  ESTILOS FOOTER
+    ===================================*/
+
+ .myfooter {
+    background-color:#4CAF50;
+    padding:5px 40px 5px 40px;
+    color:#fff;
+    font-size:14px;
+    text-align:right;
+}
+ /*=====================================
+  Boton para cotizacion
+    ===================================*/
+
+.button {
+  background-color: #FF5722;
+  border-radius: 6px;
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.4);
+  color: white;
+  display: block;
+  font-size: 1.5em;
+  font-weight: 400;
+  overflow: hidden;
+  padding: 2em 4em;
+  position: absolute;
+  text-decoration: none;
+  transition: all 200ms ease-out;
+
+}
+.button:hover {
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+
+.center {
+  left:65%;
+  position: inherit;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.ripple {
+  background-color: rgba(255,255,255,0.3);
+  opacity: 1;
+  position: absolute;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  transform: scale(0);
+  transition: all 500ms ease-out;
+}
