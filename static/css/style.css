@@ -109,7 +109,7 @@ min-height: 500px;
   
     padding-top: 10px;
     padding-bottom: 60px;
-    background: url(static/media/logo.png) no-repeat center center;
+    background: url('../media/testi.jpg') no-repeat center center;
     padding: 0;
     -webkit-background-size: cover;
     background-size: cover;
@@ -118,7 +118,7 @@ min-height: 500px;
 
 }
 .testi-sec .overlay{
-    background-color:#4CAF50; 
+    /*background-color:#4CAF50; */
     min-height: 300px;
 }
     .testi-sec h3 {
@@ -220,6 +220,14 @@ min-height: 500px;
   transition: all 500ms ease-out;
 }
 
+/*=====================================
+  ESTILOS DE FORMULARIO
+    ===================================*/
+
 .padding-rows-form{
   padding-bottom: 25px;
+}
+
+.button-form{
+  background-color: #FF5722;
 }
