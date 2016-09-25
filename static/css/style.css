@@ -190,7 +190,7 @@ min-height: 500px;
   font-size: 1.5em;
   font-weight: 400;
   overflow: hidden;
-  padding: 2em 4em;
+  padding:2em 4em;
   position: absolute;
   text-decoration: none;
   width: 80%;
@@ -199,7 +199,23 @@ min-height: 500px;
 }
 .button:hover {
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
 
+.btn-default:hover{
+  color: #FF5722;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 500px){
+  .button{
+    padding: 1em 0.3em;
+  }
+
+  .btn-default{
+    color: #fff;
+    background-color: #FF5722;
+    border-color: #ccc;
+  }
 }
 
 .center {
@@ -227,7 +243,5 @@ min-height: 500px;
 .padding-rows-form{
   padding-bottom: 25px;
 }
+  
 
-.button-form{
-  background-color: #FF5722;
-}
