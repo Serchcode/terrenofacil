@@ -2,6 +2,15 @@
 {%load static%}
 
 {%block content%}
+<style media="screen">
+h2 {
+  white-space: pre-wrap;
+}
+a.button {
+    white-space: normal;
+    position: inherit;
+}
+</style>
 <section class="header-sec" id="home">
     <div class="overlay">
  		<div class="container">
@@ -12,7 +21,7 @@
                    			Una decisión inteligente para tu futuro.
                     	</strong>
                     </h2>
-                		<div class="center"><a style="text-decoration:none;" href="#" class="button">¡COTIZA UN TERRENO YA MISMO!</a></div>   
+                		<div class="center"><a style="text-decoration:none;" href="#" class="button">¡COTIZA UN TERRENO YA MISMO!</a></div>
                   <br/>
            		</div>
             </div>
@@ -23,7 +32,7 @@
 <section class="features" id="features">
 <div class="container">
     <div class="row text-center" >
-        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"> 
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
             <h1 data-scroll-reveal="enter from the bottom after 0.1s">
                 <strong>
                 Somos Visionarios/
@@ -86,20 +95,20 @@
 <section class="testi-sec" >
     <div class="overlay">
  		<div class="container">
-           	<div class="row text-center" >           
+           	<div class="row text-center" >
                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 	                <h3 data-scroll-reveal="enter from the bottom after 0.1s">
 	                <strong>
-	                   ¿Haz soñado con tener tu propia casa? 
+	                   ¿Haz soñado con tener tu propia casa?
 	                <br>
 	                   Entonces Terreno Facil es la mejor opcion para ti.
 	                </strong>
-	                </h3>    
-                  <img class="logo-custom2" src="{%static 'media/logo.png'%}">          
+	                </h3>
+                  <img class="logo-custom2" src="{%static 'media/logo.png'%}">
                </div>
             </div>
         </div>
-    </div>       
+    </div>
 </section>
 <!--TESTIMONIAL SECTION END-->
 <section class="developers" id="developers">
@@ -115,13 +124,13 @@
                     <strong>
                   		Tel: 63559341
                     </strong>
-                </h1>   
+                </h1>
                 <h1 data-scroll-reveal="enter from the bottom after 0.5s">
                     <strong>
                   		En breve un asesor se comunicará contigo para atenderte correctamente.
                     </strong>
-                </h1>  
-            </div> 
+                </h1>
+            </div>
         </div>
 	 	<div class="row">
             <form class="white" method="POST" action="	">
@@ -192,12 +201,12 @@
 <section class="contact text-center" id="contact" >
  <div class="container">
         <div class="row text-center " >
-            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"> 
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                 <h3 data-scroll-reveal="enter from the bottom after 0.1s">
                     <strong>
                    		Siguenos en Redes Sociales
                     </strong>
-                </h3>   
+                </h3>
             </div>
         </div>
     <div class="row">
@@ -205,19 +214,19 @@
             <p>
               <i class=" fa fa-phone"></i> Telefono: 63559341
             </p>
-            <br/> 
+            <br/>
             <p>
               <i class=" fa fa-envelope"></i> email: terrenofacil@contaco.com
 			      </p>
      	</div>
         <div class="col-lg-6 col-md-6 col-sm-6" data-scroll-reveal="enter from the left after 0.4s">
             <p>
-            <i class="fa fa-facebook-square"></i> www.facebook/terrenofacil.com 
+            <i class="fa fa-facebook-square"></i> www.facebook/terrenofacil.com
             </p>
             <br>
             <p>
-            <i class="fa fa-twitter-square"></i> @terrenofacil 
-            </p>     
+            <i class="fa fa-twitter-square"></i> @terrenofacil
+            </p>
         </div>
 	</div>
   </div>
@@ -230,11 +239,11 @@
     <script src="{%static 'js/bootstrap.js'%}"></script>
      <!--  Scrolling Reveal Script -->
     <script src="{%static 'js/scrollReveal.js'%}"></script>
-    <!--  Scroll Scripts --> 
+    <!--  Scroll Scripts -->
     <script src="{%static 'js/jquery.easing.min.js'%}"></script>
      <!--  Style Switcher Scripts -->
     <script src="{%static 'js/styleSwitcher.js'%}"></script>
-        <!--  Custom Scripts -->    
+        <!--  Custom Scripts -->
     <script src="{%static 'js/custom.js'%}"></script>
     <script type="text/javascript">
       (function () {
@@ -242,40 +251,40 @@
 
     var button = document.querySelector('.button'),
         rippleSize = button.clientWidth * 2.5;
-    
+
     function addRipple(e, i) {
         var delay = 10,
             posX = e.offsetX,
             posY = e.offsetY,
             ripple = document.createElement('div');
-        
+
         ripple.classList.add('ripple');
         ripple.style.left = (posX - (rippleSize / 2)) + 'px';
         ripple.style.top = (posY - (rippleSize / 2)) + 'px';
         ripple.style.height = rippleSize + 'px';
         ripple.style.width = rippleSize + 'px';
         ripple.style.borderRadius = (rippleSize / 2) + 'px';
-        
+
         if (button.hasChildNodes()) {
             button.insertBefore(ripple, button.firstChild);
         } else {
             button.appendChild(ripple);
         }
-        
+
         setTimeout(function () {
             ripple.style['-webkit-transform'] = 'scale(1)';
             ripple.style['-moz-transform'] = 'scale(1)';
             ripple.style.transform = 'scale(1)';
             ripple.style.opacity = 0;
         }, delay);
-        
+
         setTimeout(function () {
             button.removeChild(ripple);
         }, 500);
     }
-    
+
     button.addEventListener('click', addRipple, false);
-    
+
 }());
     </script>
 {%endblock scripts%}
