@@ -5,3 +5,8 @@ class HomeView(View):
 	def get(self,request):
 		template_name="index.html"
 		return render(request,template_name)
+
+class HolaView(View):
+	def get(self, request):
+		template_name="hola.html"
+		return render(request,template_name)
