@@ -40,7 +40,9 @@ p {
     ===================================*/
 
 .logo-custom {
-     max-height:43px;
+    margin-top: -7px;
+     width: 80px;
+     
 
 }
 .logo-custom2{
@@ -52,6 +54,7 @@ p {
     font-size:12px;
     font-weight:900;
     letter-spacing:1px;
+    width: 100%;
    
 }
 /*.navbar-inverse {
@@ -75,7 +78,7 @@ color: #4CAF50;
   
 padding-top: 10px;
 padding-bottom: 60px;
-background: url(static/media/logo.png) no-repeat center center;
+background: url('../media/back2.jpg') no-repeat center center;
 padding: 0;
 -webkit-background-size: cover;
 background-size: cover;
@@ -83,7 +86,7 @@ background-size: cover;
  background-attachment:fixed;
 }
 .header-sec .overlay{
-    background-color:#4CAF50;
+ /* background-color:#4CAF50;*/
 min-height: 500px;
 }
     .header-sec h2 {
@@ -124,13 +127,16 @@ min-height: 500px;
     line-height:35px;
 }
 
+.input-field{
+  padding-bottom: 25px;
+  text-align: center;
+}
 
 /*=====================================
   ESTILOS DE MENSAJES DESPUES DEL CONTACTO JAJAJAJ
     ===================================*/
 
 .price-sec {
-  
     padding-top: 40px;
     padding-bottom: 60px;
     color:#fff;
@@ -183,6 +189,7 @@ min-height: 500px;
   padding: 2em 4em;
   position: absolute;
   text-decoration: none;
+  width: 80%;
   transition: all 200ms ease-out;
 
 }
@@ -194,6 +201,7 @@ min-height: 500px;
   left:65%;
   position: inherit;
   top: 50%;
+  padding-top: 10%;
   transform: translate(-50%,-50%);
 }
 

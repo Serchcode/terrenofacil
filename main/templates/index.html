@@ -2,14 +2,14 @@
 {%load static%}
 
 {%block content%}
-<section class="header-sec" id="home" >
+<section class="header-sec" id="home">
     <div class="overlay">
  		<div class="container">
            <div class="row text-center" >
            		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                		<h2 data-scroll-reveal="enter from the bottom after 0.1s">
                     	<strong>
-                   			Una decición inteligente para tu futuro.
+                   			Una decisión inteligente para tu futuro.
                     	</strong>
                     </h2>
                 		<div class="center"><a  texte-decoration="none" href="#" class="button">¡COTIZA UN TERRENO YA MISMO!</a></div>   
@@ -104,11 +104,11 @@
 <!--TESTIMONIAL SECTION END-->
 <section class="developers" id="developers">
  	<div class="container">
-        <div class="row text-center">
+        <div class="row text-center" style="padding-bottom:75px;">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                 <h1 data-scroll-reveal="enter from the bottom after 0.1s">
                     <strong>
-                  		Contactanos
+                  		Contáctanos
                     </strong>
                 </h1>
                 <h1 data-scroll-reveal="enter from the bottom after 0.3s">
@@ -123,29 +123,29 @@
                 </h1>  
             </div> 
         </div>
-	 	<div class="row " >
+	 	<div class="row">
             <form class="white" method="POST" action="	">
                 {% csrf_token %}
             <div class="row">
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">account_circle</i>
+                <div class="input-field col-lg-12 col-sm-12 text-center">
+                  <i class="fa fa-user"></i>
                   <input required="true" name="name"id="icon_prefix" type="text" class="validate">
                   <label for="icon_prefix">Nombre Completo</label>
                 </div>
-
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">phone</i>
+                <div class="input-field col-lg-6">
+                  <i class="fa fa-phone"></i>
                   <input required="true" name="tel"id="icon_telephone" type="tel" class="validate">
                   <label for="icon_telephone">Teléfono</label>
                 </div>
 
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">mail</i>
+                <div class="input-field col-lg-6">
+                  <i class="fa fa-envelope"></i>
                   <input required="true" name="mail"id="email" type="email" class="validate">
                   <label for="email" data-error="Ingrese un Email válido" data-success="Email válido">E-Mail</label>
                 </div>
-
-                <div class="input-field col s12 m6">
+                <div class="input-field col-lg-6">
+                <i class="fa fa-arrows-h"></i>
+                <label>¿De qué tamaño te gustaria tu terreno?</label>
                 <select name="size">
                   <option value="" disabled selected>Escoge un tamaño: </option>
                   <option value="120m">120m</option>
@@ -153,10 +153,11 @@
                   <option value="300m">300m</option>
                   <option value="Otro Tamaño">Otro</option>
                 </select>
-                <label>¿De qué tamaño te gustaria tu terreno?</label>
               	</div>
 
-               <div class="input-field col s12 m6">
+               <div class="input-field col-lg-6">
+                <i class="fa fa-dollar "></i>
+                 <label>¿A qué plazo te gustaría pagarlo?</label>
                 <select name="plazo">
                   <option value="" disabled selected>Escoge un plazo: </option>
                   <option value="12 meses">1 año</option>
@@ -164,7 +165,6 @@
                   <option value="36 meses">3 años</option>
                   <option value="60 meses">5 años</option>
                 </select>
-                <label>¿A qué plazo te gustaría pagarlo?</label>
               </div>
             </div>
         </div>
@@ -172,20 +172,24 @@
   </div>
  </section>
 <!--DEVELOPERS SECTION END-->
-<section class="price-sec text-center "  id="pricing">
-    <div class="col-lg-6  col-md-6 col-sm-6 single-price" data-scroll-reveal="enter from the left after 0.2s">
+<section class="price-sec text-center"  id="pricing">
+  <div class="container" style="width:100%;">
+  <div class="row">
+    <div class="col-lg-6  col-md-6 col-sm-12 single-price" data-scroll-reveal="enter from the top after 0.2s">
         <span ><i class="fa fa-check-square-o"></i></span>
             <h1>ASÍ DE FACIL</h1>
             <h1>ADQUIERE TU TERRENO</h1>
             <br>
   	</div>
-    <div class="col-lg-6  col-md-6 col-sm-6 multi-price" data-scroll-reveal="enter from the right after 0.2s">
+    <div class="col-lg-6 col-md-5 col-sm-12 multi-price" data-scroll-reveal="enter from the top after 0.2s">
         <span ><i class="fa fa-phone"></i></span>
             <h1>SOLO INGRESA TUS DATOS Y UN ASESOR SE PONDRÁ EN CONTACTO CONTIGO</h1>
+            </div>
+    </div>
     </div>
 </section>
 <!--PRICING SECTION END-->
-<section class="contact" id="contact" >
+<section class="contact text-center" id="contact" >
  <div class="container">
         <div class="row text-center " >
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"> 
@@ -199,20 +203,20 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6" data-scroll-reveal="enter from the right after 0.2s">
             <p>
-              <i class=" fa fa-phone"></i>Telefono: 63559341
+              <i class=" fa fa-phone"></i> Telefono: 63559341
             </p>
             <br/> 
             <p>
-              <i class=" fa fa-envelope"></i>email: terrenofacil@contaco.com
+              <i class=" fa fa-envelope"></i> email: terrenofacil@contaco.com
 			      </p>
      	</div>
         <div class="col-lg-6 col-md-6 col-sm-6" data-scroll-reveal="enter from the left after 0.4s">
             <p>
-            <i class="fa fa-facebook-square"></i>www.facebook/terrenofacil.com 
+            <i class="fa fa-facebook-square"></i> www.facebook/terrenofacil.com 
             </p>
             <br>
             <p>
-            <i class="fa fa-twitter-square"></i>@terrenofacil 
+            <i class="fa fa-twitter-square"></i> @terrenofacil 
             </p>     
         </div>
 	</div>
