@@ -82,7 +82,7 @@ color: #4CAF50;
   
 padding-top: 10px;
 padding-bottom: 60px;
-background: url('../media/back4.jpg') no-repeat center center;
+background: url('../media/back4.jpg') no-repeat center center rgba(0,0,0,0.5);
 padding: 0;
 -webkit-background-size: cover;
 background-size: cover;
@@ -199,6 +199,7 @@ min-height: 500px;
 }
 .button:hover {
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  color:#000;
 }
 
 .btn-default:hover{
