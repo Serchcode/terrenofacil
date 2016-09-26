@@ -63,14 +63,14 @@
                       Sin necesidad de hacer filas, esperar a realizar un tardado trámite, en Pro-Visión queremos ayudarte sin necesidad de hacerte sufrir.
                   </p>
         </div>
-      <div class="col-lg-4 col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.8s" >
+      <div class="col-lg-4 col-md-4 col-sm-4 just-pad-responsive" data-scroll-reveal="enter from the bottom after 0.8s" >
             <i class=" fa fa-users fa-5x "></i>
                 <h4 ><strong> Sin aval </strong></h4>
                   <p>
                       Sabemos que es muy complicado encontrar alguien de tu confianza para que sea tu aval, es por eso que nosotros no te lo pedimos como requisito.
                   </p>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 1.4s" >
+      <div class="col-lg-4 col-md-4 col-sm-4 just-pad-responsive" data-scroll-reveal="enter from the bottom after 1.4s" >
             <i class=" fa fa-dollar fa-5x "></i>
                 <h4 ><strong> Excelente Precio de Contado </strong></h4>
                   <p>
@@ -105,54 +105,52 @@
  	<div class="container">
         <div class="row text-center" style="padding-bottom:75px;">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                <h1 data-scroll-reveal="enter from the bottom after 0.1s">
+                <h2 data-scroll-reveal="enter from the bottom after 0.1s">
                     <strong>
                   		Contáctanos
                     </strong>
-                </h1>
-                <h1 data-scroll-reveal="enter from the bottom after 0.3s">
+                </h2>
+                <h2 data-scroll-reveal="enter from the bottom after 0.3s">
                     <strong>
                   		Tel: 63559341
                     </strong>
-                </h1>   
-                <h1 data-scroll-reveal="enter from the bottom after 0.5s">
+                </h2>   
+                <h2 data-scroll-reveal="enter from the bottom after 0.5s" style="text-align:left;">
                     <strong>
                   		En breve un asesor se comunicará contigo para atenderte correctamente.
                     </strong>
-                </h1>  
+                </h2>  
             </div> 
         </div>
         <div class="row">
             <form class="white" method="POST" action="">
                 {% csrf_token %}
             <div class="form-group">
-              <div class="row padding-rows-form">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="text-align:center;">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
                   <i class="fa fa-user fa-2x"></i></div>  
-                 <!-- <label for="icon_prefix" class="col-lg-2 col-md-2 col-sm-2 col-form-label" style="vertical-align:middle;">Nombre Completo</label>-->
-                  <div class="input-field col-lg-11 col-md-11 col-sm-11">
+                  <div class="input-field col-lg-11 col-md-11 col-sm-11 col-xs-11">
                   <input required="true" name="name"id="icon_prefix" type="text" class="validate form-control" placeholder="Nombre Completo">
                   </div>
               </div>
-              <div class="row padding-rows-form">
-                  <div class="col-lg-1 col-md-1 col-sm-1">
+              <div class="padding-rows-form">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
                   <i class="fa fa-phone fa-2x"></i></div>  
-                  <div class="input-field col-lg-5 col-md-5 col-sm-5">
+                  <div class="input-field col-lg-5 col-md-5 col-sm-5 col-xs-11">
                   <input required="true" name="tel"id="icon_telephone" type="tel" class="validate form-control" placeholder="Teléfono">
                   <!--<label for="icon_telephone">Teléfono</label>-->
                 </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
                   <i class="fa fa-envelope fa-2x"></i></div>
-                <div class="input-field col-lg-5 col-md-5 col-sm-5">
+                <div class="input-field col-lg-5 col-md-5 col-sm-5 col-xs-11">
                   <input required="true" name="mail"id="email" type="email" class="validate form-control" placeholder="Correo Electrónico">
                  <!-- <label for="email" data-error="Ingrese un Email válido" data-success="Email válido">E-Mail</label>-->
                 </div>
               </div>
-              <div class="row padding-rows-form">
-                <div class="col-lg-1 col-md-1 col-sm-1">
+               <div class="padding-rows-form">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
                   <i class="fa fa-arrows-h fa-2x"></i></div>
-               <label for="icon_prefix" class="col-lg-3 col-md-3 col-sm-3 col-form-label" style="vertical-align:middle;">¿De qué tamaño te gustaría tu terreno?</label>
-                <div class="input-field col-lg-2 col-md-2 col-sm-2">
+               <label for="icon_prefix" class="col-lg-3 col-md-3 col-sm-3 col-xs-7 col-form-label text-center	" style="vertical-align:middle;">¿De qué tamaño te gustaría tu terreno?</label>
+                <div class="input-field col-lg-2 col-md-2 col-sm-2 col-xs-4">
                   <select class="selectpicker form-control" name="size">
                     <option value="" disabled selected>Escoge un tamaño: </option>
                     <option value="120m">120m</option>
@@ -162,10 +160,11 @@
                   </select>
                 </div>
 
-                <div class="col-lg-1 col-md-1 col-sm-1">               
+
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">               
                   <i class="fa fa-dollar fa-2x"></i></div>
-                <label for="icon_prefix" class="col-lg-3 col-md-3 col-sm-3 col-form-label" style="vertical-align:middle;">¿A qué plazo te gustaría pagarlo?</label>
-                <div class="input-field col-lg-2 col-md-2 col-sm-2">
+                <label for="icon_prefix" class="col-lg-3 col-md-3 col-sm-3 col-xs-7 col-form-label text-center" style="vertical-align:middle;">¿A qué plazo te gustaría pagarlo?</label>
+                <div class="input-field col-lg-2 col-md-2 col-sm-2 col-xs-4">
                   <select  class="custom-select form-control" name="plazo">
                     <option value="" disabled selected>Escoge un plazo: </option>
                     <option value="12 meses">1 año</option>
@@ -175,11 +174,10 @@
                   </select>
               </div>
               </div>
-              <div class="row padding-rows-form">
-              <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
+               <div class="padding-rows-form">
+              <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
                 <button type="submit" class="btn-default form-control">Enviar</button>
               </div></div>
-            </div>
       </form>    
     </div>
 	 	
@@ -195,7 +193,7 @@
             <h1>ADQUIERE TU TERRENO</h1>
             <br>
   	</div>
-    <div class="col-lg-6 col-md-6 col-sm-12 multi-price" data-scroll-reveal="enter from the top after 0.2s">
+    <div class="col-lg-6 col-md-6 col-sm-12 multi-price" data-scroll-reveal="enter from the top after 0.1s">
         <span ><i class="fa fa-phone"></i></span>
             <h1>SOLO INGRESA TUS DATOS Y UN ASESOR SE PONDRÁ EN CONTACTO CONTIGO</h1>
             </div>
@@ -224,7 +222,7 @@
               <i class=" fa fa-envelope"></i> email: terrenofacil@contaco.com
 			      </p>
      	</div>
-        <div class="col-lg-6 col-md-6 col-sm-6" data-scroll-reveal="enter from the bottom after 0.4s">
+        <div class="col-lg-6 col-md-6 col-sm-6 just-pad-responsive" data-scroll-reveal="enter from the bottom after 0.4s">
             <p>
             <i class="fa fa-facebook-square"></i> www.facebook/terrenofacil.com 
             </p>

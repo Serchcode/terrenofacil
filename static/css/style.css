@@ -82,7 +82,7 @@ color: #4CAF50;
   
 padding-top: 10px;
 padding-bottom: 60px;
-background: url('../media/back2.jpg') no-repeat center center;
+background: url('../media/back4.jpg') no-repeat center center;
 padding: 0;
 -webkit-background-size: cover;
 background-size: cover;
@@ -109,7 +109,7 @@ min-height: 500px;
   
     padding-top: 10px;
     padding-bottom: 60px;
-    background: url('../media/testi.jpg') no-repeat center center;
+    background: url('../media/testi1.jpg') no-repeat center center;
     padding: 0;
     -webkit-background-size: cover;
     background-size: cover;
@@ -215,6 +215,11 @@ min-height: 500px;
     color: #fff;
     background-color: #FF5722;
     border-color: #ccc;
+  }
+
+  .just-pad-responsive
+  {
+    padding-top: 50px;
   }
 }
 
