@@ -5,9 +5,9 @@ class ClienteForm(forms.ModelForm):
 
 	LENGTH_CHOICES = (
 	('','Seleccione un tamaño'),
-	('120','120m'),
-	('150','150m'),
-	('300','300m'),
+	('120','120 m'),
+	('150','150 m'),
+	('300','300 m'),
 	('other','Otro'),
 	)
 
@@ -19,9 +19,9 @@ class ClienteForm(forms.ModelForm):
 		('5 años','5 Años'),
 		)
 
-	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre Completo','class':'validate form-control','name':'name'}))
-	telefono = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control','name':'tel'}))
-	correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control'}))
+	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre Completo','class':'validate form-control','name':'name',}))
+	telefono = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control','name':'tel','type':'number'}))
+	correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control','type':'email'}))
 	tamano = forms.CharField(widget=forms.Select(choices=LENGTH_CHOICES, attrs={'class':'selectpicker form-control'}))
 	plazo = forms.CharField(widget=forms.Select(choices=PLAZO_PAGO_CHOICES, attrs={'class':'selectpicker form-control'}))
 

@@ -4,9 +4,9 @@ from django.db import models
 class Cliente(models.Model):
 
 	LENGTH_CHOICES = (
-	('120','120m'),
-	('150','150m'),
-	('300','300m'),
+	('120','120 m'),
+	('150','150 m'),
+	('300','300 m'),
 	('other','Otro'),
 	)
 
@@ -22,5 +22,12 @@ class Cliente(models.Model):
 	correo = models.EmailField(max_length=140)
 	tamano = models.CharField(max_length=5,choices=LENGTH_CHOICES,default="Escoge un tamaño")
 	plazo = models.CharField(max_length=10, choices=PLAZO_PAGO_CHOICES, default="Escoge un plazo")
+	fecha = models.DateField(auto_now=True, blank=True,null=True)
+	hora = models.TimeField(auto_now=True, blank=True, null=True)
 	
+	def __str__(self):
+		return 'Cliente: {} se registró el {} a las {}'.format(self.nombre, self.fecha, self.hora)
+
+	class Meta:
+		ordering = ('-fecha','-hora')
 # Create your models here.

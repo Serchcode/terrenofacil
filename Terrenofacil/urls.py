@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls), 
-    url(r'^',include(mainUrls, namespace="home")),
+    url(r'^',include(mainUrls, namespace="main")),
     url(
         regex=r'^media/(?P<path>.*)$',
         view=serve,
