@@ -18,7 +18,7 @@ class Cliente(models.Model):
 		)
 
 	nombre = models.CharField(max_length=100)
-	telefono = models.IntegerField()
+	telefono = models.CharField(max_length=13)
 	correo = models.EmailField(max_length=140)
 	tamano = models.CharField(max_length=5,choices=LENGTH_CHOICES,default="Escoge un tamaño")
 	plazo = models.CharField(max_length=10, choices=PLAZO_PAGO_CHOICES, default="Escoge un plazo")
