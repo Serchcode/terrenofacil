@@ -57,14 +57,14 @@
      </div>
      <div class="row text-center just-pad" >
         <div class="col-lg-4 col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.2s" >
-            <i class=" fa fa-file-text-o fa-5x "></i>
+            <i class=" fa fa-file-text-o fa-5x parpadeo"></i>
                 <h4 ><strong> Pocos trámites </strong></h4>
                   <p>
-                      Sin necesidad de hacer filas, esperar a realizar un tardado trámite, en Pro-Visión queremos ayudarte sin necesidad de hacerte sufrir.
+                      Sin necesidad de hacer filas, esperar a realizar un tardado trámite, en Terreno Fácil queremos ayudarte sin necesidad de hacerte sufrir.
                   </p>
         </div>
       <div class="col-lg-4 col-md-4 col-sm-4 just-pad-responsive" data-scroll-reveal="enter from the bottom after 0.8s" >
-            <i class=" fa fa-users fa-5x "></i>
+            <i class=" fa fa-users fa-5x parpadeo"></i>
                 <h4 ><strong> Sin aval </strong></h4>
                   <p>
                       Sabemos que es muy complicado encontrar alguien de tu confianza para que sea tu aval, es por eso que nosotros no te lo pedimos como requisito.
@@ -222,4 +222,19 @@
   </div>
   </div>
  </section>
+
 {%endblock content%}
+
+{% block otherscripts %}
+<script>
+  var par=false; 
+function parpadeo() { 
+    col=par ? 'white' : 'black'; 
+    document.getElementByClass('parpadeo').style.color=col; 
+    par = !par; 
+    setTimeout("parpadeo()",1000); //500 = medio segundo 
+} 
+window.onload=parpadeo; 
+</script>
+  
+{% endblock otherscripts %}
