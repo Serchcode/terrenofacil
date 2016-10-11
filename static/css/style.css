@@ -226,6 +226,11 @@ min-height: 500px;
     font-size:20px;
     line-height:35px;
 }
+.no-decoration{
+  text-decoration: none !important;
+  color: #333333;
+}
+
  /*=====================================
   ESTILOS FOOTER
     ===================================*/
