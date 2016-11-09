@@ -24,6 +24,7 @@ class Cliente(models.Model):
 	plazo = models.CharField(max_length=10, choices=PLAZO_PAGO_CHOICES, default="Escoge un plazo")
 	fecha = models.DateField(auto_now=True, blank=True,null=True)
 	hora = models.TimeField(auto_now=True, blank=True, null=True)
+	comentario = models.TextField(blank=True, null=True)
 	
 	def __str__(self):
 		return 'Cliente: {} se registró el {} a las {}'.format(self.nombre, self.fecha, self.hora)
