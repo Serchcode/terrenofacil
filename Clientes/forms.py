@@ -32,5 +32,4 @@ class ClienteForm(forms.ModelForm):
 		fields = ['nombre','telefono','correo','tamano','plazo']
 
 
-
         

@@ -25,10 +25,19 @@ class Cliente(models.Model):
 	fecha = models.DateField(auto_now=True, blank=True,null=True)
 	hora = models.TimeField(auto_now=True, blank=True, null=True)
 	comentario = models.TextField(blank=True, null=True)
+	cerrado = models.BooleanField(default=False, blank=True)
+	cita = models.DateField(default=None, blank=True, null=True)
+
 	
 	def __str__(self):
 		return 'Cliente: {} se registró el {} a las {}'.format(self.nombre, self.fecha, self.hora)
 
 	class Meta:
 		ordering = ('-fecha','-hora')
+
+class Administradores(models.Model):
+	nombre = models.CharField(max_length=100)
+	apellidos = models.CharField(max_length=140, blank=True, null=True)
+	correo = models.EmailField(max_length=140, blank=True, null=True)
+	username = models.CharField(max_length=140)
 # Create your models here.

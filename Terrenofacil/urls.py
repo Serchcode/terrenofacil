@@ -3,11 +3,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.static import serve
 from main import urls as mainUrls
+from Clientes import urls as SeguimientoUrls
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls), 
     url(r'^',include(mainUrls, namespace="main")),
+    url(r'^seguimiento/', include(SeguimientoUrls, namespace="seguimiento")),
+
     url(
         regex=r'^media/(?P<path>.*)$',
         view=serve,
