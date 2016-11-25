@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from .models import Cliente
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import EditRegistro
 
 class Registros	(View):
 	@method_decorator(login_required)
@@ -22,7 +23,8 @@ class Detalle(View):
 	def get(self, request, id):
 		template_name = "clientes/detalle.html"
 		registro = Cliente.objects.get(pk = id)
-		context = {'registro':registro}
+		editform = EditRegistro(instance=registro)
+		context = {'editform':editform}
 		return render(request, template_name, context)
 
 class Cerrar(View):

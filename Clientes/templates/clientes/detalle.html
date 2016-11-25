@@ -2,7 +2,29 @@
 {% load static %}
 
 {% block content %}
-	<p>Nombre: {{registro.nombre}}</p>
+	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="logo-custom" src="{%static 'media/logo.png'%}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONÓCENOS</a></li>     
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONTACTO</a></li>
+                    <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <div class="container" style="padding-top:5%;">
+	<!--<p>Nombre: {{registro.nombre}}</p>
 	<p>Telefono: {{registro.telefono}}</p>
 	<p>Correo: {{registro.correo}}</p>
 	<p>Tamaño: {{registro.tamano}}</p>
@@ -11,7 +33,12 @@
 	<p>Hora: {{registro.hora}}</p>
 	<p>Comentario: {{registro.comentario}}</p>
 	<p>Cerrado: {{registro.cerraro}}</p>
-	<p>Cita {{registro.cita}}</p>
+	<p>Cita {{registro.cita}}</p>-->
+	<form action="." method="post" enctype="multipart/form-data">
+		{%csrf_token%}
+		{{editform.as_p}}
+	</form>
+	</div>
 
 	
 {% endblock content %}
