@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+	<p>Nombre: {{registro.nombre}}</p>
+	<p>Telefono: {{registro.telefono}}</p>
+	<p>Correo: {{registro.correo}}</p>
+	<p>Tamaño: {{registro.tamano}}</p>
+	<p>Plazo: {{registro.plazo}}</p>
+	<p>Fecha: {{registro.fecha}}</p>
+	<p>Hora: {{registro.hora}}</p>
+	<p>Comentario: {{registro.comentario}}</p>
+	<p>Cerrado: {{registro.cerraro}}</p>
+	<p>Cita {{registro.cita}}</p>
+
+	
+{% endblock content %}

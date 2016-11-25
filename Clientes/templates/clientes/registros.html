@@ -29,17 +29,18 @@
     		<div class="panel-body">
     			<div class="list-group">
     				{% for registro in registros %}
-    					<a href="{%url 'seguimiento:detalle' registro.id%}" class="list-group-item clearfix">
+    					<div class="list-group-item clearfix">
     						<span class="pull-left">
     						<h4 class="list-group-item-heading">{{registro.nombre}}</h4>
     						<p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
     						</span>
     						<span class="pull-right">
-    							<button class="btn btn xs btn-info">Ver detalle</button>
-    							<button class="btn btn xs btn-warning">Cerrar</button>
+                                <a href="{%url 'seguimiento:detalle' registro.id%}">
+    							<button class="btn btn xs btn-info">Ver detalle</button></a>
+    							<a href="{%url 'seguimiento:cerrar' registro.id%}"><button class="btn btn xs btn-warning">Cerrar</button></a>
     							<button class="btn btn xs btn-success">Eliminar</button>
     						</span>
-    					</a>
+    					</div>
     				{% endfor %}
     			</div>
     		</div>

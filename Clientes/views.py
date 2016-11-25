@@ -14,6 +14,19 @@ class Registros	(View):
 		counter = Cliente.objects.all().count()
 		context = {'registros':registros, 'counter':counter}
 		return render(request, template_name, context)
+
 class Detalle(View):
-	pass
-# Create your views here.
+	@method_decorator(login_required)
+	def get(self, request, id):
+		template_name = "clientes/detalle.html"
+		registro = Cliente.objects.get(pk = id)
+		context = {'registro':registro}
+		return render(request, template_name, context)
+
+class Cerrar(View):
+	def get(self, request, id):
+		registro = Cliente.objects.get(pk = id)
+		registro.cerrado = True
+		registro.save()
+		return redirect('seguimiento:registros')
+
