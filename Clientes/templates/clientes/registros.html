@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
         <div class="container">
             <div class="navbar-header">
@@ -24,26 +25,121 @@
         </div>
     </div>
     <div class="container" style="padding-top:5%;">
+    {%if messages%}
+    {% for message in messages %}
+        <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {%endif%}
     	<div class="panel panel-primary">
     		<div class="panel-heading">Total de Registros: {{counter}}</div>
     		<div class="panel-body">
     			<div class="list-group">
     				{% for registro in registros %}
-    					<div class="list-group-item clearfix">
-    						<span class="pull-left">
-    						<h4 class="list-group-item-heading">{{registro.nombre}}</h4>
-    						<p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
-    						</span>
-    						<span class="pull-right">
+                        {% if registro.cerrado == False %}
+                          <div class="list-group-item clearfix">
+                            <span class="pull-left">
+                            <h4 class="list-group-item-heading">{{registro.nombre}}</h4>
+                            <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
+                            </span>
+                            <span class="pull-right">
                                 <a href="{%url 'seguimiento:detalle' registro.id%}">
-    							<button class="btn btn xs btn-info">Ver detalle</button></a>
-    							<a href="{%url 'seguimiento:cerrar' registro.id%}"><button class="btn btn xs btn-warning">Cerrar</button></a>
-    							<button class="btn btn xs btn-success">Eliminar</button>
-    						</span>
-    					</div>
+                                <button class="btn btn xs btn-success">Ver detalle</button></a>
+                                <button class="btn btn xs btn-warning open-modal" data-toggle="modal" data-target="#{{registro.id}}close">Cerrar</button>
+                                <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#{{registro.id}}">Eliminar</button>
+                            </span>
+                        </div>
+                        <div id="{{registro.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Eliminar registro</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <p>¿Deseas eliminar a {{registro.nombre}}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{%url 'seguimiento:eliminar' registro.id%}"><button class="btn btn-lg btn-success">Si</button></a>
+                                        <button class="btn btn-lg btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="{{registro.id}}close" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Cerrar registro</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <p>¿Deseas cerrar registro de {{registro.nombre}}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{%url 'seguimiento:cerrar' registro.id%}"><button class="btn btn xs btn-success">Si</button></a>
+                                        <button class="btn btn xs btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="list-group-item clearfix">
+                            <span class="pull-left">
+                            <h4 class="list-group-item-heading">{{registro.nombre}}</h4>
+                            <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
+                            </span>
+                            <span class="pull-right">
+                                <a href="{%url 'seguimiento:detalle' registro.id%}">
+                                <button class="btn btn xs btn-success">Ver detalle</button></a>
+                                <button class="btn btn xs btn-warning" disabled="true">Cerrar</button>
+                                <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#{{registro.id}}" nombre="{{registro.nombre}}"
+                                ide="{{registro.id}}">Eliminar</button>
+                            </span>
+                        </div>
+                        <div id="{{registro.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Eliminar registro</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <p>¿Deseas eliminar a {{registro.nombre}}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{%url 'seguimiento:eliminar' registro.id%}"><button class="btn btn xs btn-success">Si</button></a>
+                                        <button class="btn btn xs btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        {% endif %}
+    					
     				{% endfor %}
     			</div>
     		</div>
     	</div>
     </div>
 {%endblock content%}
+
+{% block otherscripts %}
+<!--<script>
+    $(".open-modal").on("click", function(){
+        var nombre = $(this).attr('nombre');
+        $(".name-modal").text(nombre);
+
+    });
+</script>-->
+<script>
+    $(document).ready(function(){
+        $('.success').addClass("alert alert-success");
+        $('.success').attr("role", "alert");
+        $('.error').addClass("alert alert-danger");
+        $('.error').attr("role", "alert");
+    });
+</script>
+    
+{% endblock otherscripts %}
