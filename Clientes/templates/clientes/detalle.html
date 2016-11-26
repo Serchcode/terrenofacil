@@ -24,21 +24,97 @@
         </div>
     </div>
     <div class="container" style="padding-top:5%;">
-	<!--<p>Nombre: {{registro.nombre}}</p>
-	<p>Telefono: {{registro.telefono}}</p>
-	<p>Correo: {{registro.correo}}</p>
-	<p>Tamaño: {{registro.tamano}}</p>
-	<p>Plazo: {{registro.plazo}}</p>
-	<p>Fecha: {{registro.fecha}}</p>
-	<p>Hora: {{registro.hora}}</p>
-	<p>Comentario: {{registro.comentario}}</p>
-	<p>Cerrado: {{registro.cerraro}}</p>
-	<p>Cita {{registro.cita}}</p>-->
-	<form action="." method="post" enctype="multipart/form-data">
-		{%csrf_token%}
-		{{editform.as_p}}
-	</form>
-	</div>
+    <div class="row">
+        <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Nombre</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.nombre}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Correo</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.correo}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Teléfono</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.telefono}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Plazo</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.plazo}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Tamaño</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.tamano}} m</p>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Fecha de registro</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{registro.fecha}} a las {{registro.hora}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+	   <form action="." method="post" enctype="multipart/form-data">
+		  {%csrf_token%}
+          <div class="form-group">
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+                <label for="comentario">Añadir un comentario</label>
+                  {{editform.comentario}}
+              </div>
+              <label for="cita">Próxima cita:</label>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center input-group date" data-provide="datepicker">
+                  {{editform.cita}}
+                  <span class="input-group-addon" id="addon">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+              </div>
+          </div>
+        </form>
+        </div>
+        <div class="row" style="padding-top:2%;">
+            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8 col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-offset-2">
+            </div>
+        </div>  
+    
+</div>
+  <!--  <div class="input-group date" data-provide="datepicker">
+    <input type="text" class="form-control datepicker">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+    </div> -->
 
-	
 {% endblock content %}
+
+{% block otherscripts %}
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker();
+        });
+    </script>
+{% endblock otherscripts %}

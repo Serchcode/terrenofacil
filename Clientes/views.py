@@ -24,7 +24,7 @@ class Detalle(View):
 		template_name = "clientes/detalle.html"
 		registro = Cliente.objects.get(pk = id)
 		editform = EditRegistro(instance=registro)
-		context = {'editform':editform}
+		context = {'editform':editform,'registro':registro}
 		return render(request, template_name, context)
 
 class Cerrar(View):
