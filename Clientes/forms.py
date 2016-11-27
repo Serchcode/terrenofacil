@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Cliente
+from .models import Cliente, Comentarios
 
 class ClienteForm(forms.ModelForm):
 
@@ -32,16 +32,21 @@ class ClienteForm(forms.ModelForm):
 		fields = ['nombre','telefono','correo','tamano','plazo']
 
 class EditRegistro(forms.ModelForm):
-
-
-	comentario = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Ingresa comentario','class':'validate form-control formclass','name':'comentario','id':'comentario','rows':'4'}))
-	cita = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Próxima cita: ','class':'validate form-control formclass datepicker','name':'cita','id':'cita','aria-describedby':'addon','readonly':'true'}))
-	#telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control formclass','name':'tel','type':'number','maxlength':'13','required':'true'}))
-	#correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control formclass','type':'email','required':'true'}))
 	
-
-
+	cita = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Próxima cita: ','class':'validate form-control formclass datepicker','name':'cita','id':'cita','aria-describedby':'addon','readonly':'true'}))
 
 	class Meta:
 		model = Cliente
-		fields = ['comentario','cita']
+		fields = ['cita']
+
+class CommentsForm(forms.ModelForm):
+
+
+	coment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Ingresa comentario','class':'validate form-control formclass','name':'comentario','id':'comentario','rows':'4'}))
+	
+	#telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control formclass','name':'tel','type':'number','maxlength':'13','required':'true'}))
+	#correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control formclass','type':'email','required':'true'}))
+
+	class Meta:
+		model = Comentarios
+		fields = ['coment']

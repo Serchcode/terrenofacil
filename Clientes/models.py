@@ -40,4 +40,15 @@ class Administradores(models.Model):
 	apellidos = models.CharField(max_length=140, blank=True, null=True)
 	correo = models.EmailField(max_length=140, blank=True, null=True)
 	username = models.CharField(max_length=140)
-# Create your models here.
+
+class Comentarios(models.Model):
+	cliente = models.ForeignKey(Cliente, related_name='comentarios')
+	fecha = models.DateTimeField(auto_now=True)
+	coment = models.TextField()
+
+	def __str__(self):
+		return 'Nuevo comentario en: {}'.format(self.cliente)
+
+	class Meta:
+		ordering = ('-fecha',)
+

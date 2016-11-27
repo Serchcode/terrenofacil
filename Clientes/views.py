@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from .models import Cliente
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import EditRegistro
+from .forms import EditRegistro, CommentsForm
 
 class Registros	(View):
 	@method_decorator(login_required)
@@ -18,14 +18,45 @@ class Registros	(View):
 		context = {'registros':registros, 'counter':counter}
 		return render(request, template_name, context)
 
+	def post(self,request):
+		data = request.POST.get('hidden')
+		print(data)
+		aidi = request.POST.get('aidi')
+		print(aidi)
+		#cliente = Cliente.objects.get(pk = aidi)
+		if data == 'comentario':
+			form = CommentsForm(request.POST)
+			form_save = form.save(commit=False)
+			if form_save.coment == '':
+				messages.error(request, "Comentario vacio")
+			else:
+				form_save.cliente = Cliente.objects.get(pk = int(aidi))
+				print(form_save)
+				form_save.save()
+				messages.success(request, "Comentario guardado")
+		elif data == 'cita':
+			messages.success(request, "Cita actualizada")
+		return redirect('seguimiento:detalle', id = int(aidi))
+
+
 class Detalle(View):
 	@method_decorator(login_required)
 	def get(self, request, id):
 		template_name = "clientes/detalle.html"
 		registro = Cliente.objects.get(pk = id)
+		comentarios = registro.comentarios.all()
 		editform = EditRegistro(instance=registro)
-		context = {'editform':editform,'registro':registro}
+		comentariosform = CommentsForm()
+		context = {'editform':editform,'registro':registro,'comentarios':comentarios,'comentariosform':comentariosform}
 		return render(request, template_name, context)
+
+	def post(self,request):
+		data = request.POST.get('hidden')
+		print(data)
+		aidi = request.POST.get('aidi')
+		print(aidi)
+		return redirect('seguimiento:detalle', id = int(aidi))
+
 
 class Cerrar(View):
 	def get(self, request, id):

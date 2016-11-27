@@ -78,13 +78,14 @@
             </div>
         </div>
     </div>
-    <div class="row">
-	   <form action="." method="post" enctype="multipart/form-data">
+    
+	   <form action="." method="POST" enctype="multipart/form-data">
 		  {%csrf_token%}
+        <div class="row">
           <div class="form-group">
               <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
                 <label for="comentario">Añadir un comentario</label>
-                  {{editform.comentario}}
+                  {{comentariosform.coment}}
               </div>
               <label for="cita">Próxima cita:</label>
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center input-group date" data-provide="datepicker">
@@ -94,20 +95,41 @@
                   </span>
               </div>
           </div>
+          </div>
+          <br>
+          <input type="hidden" id="hidden" name="hidden">
+          <input type="hidden" id="aidi" name="aidi" value="{{registro.id}}">
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+                  <input type="submit" class="btn btn-success parapost" id="comentarioBtn" value="Agregar comentario" style="width:100%;">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+                  <a class="btn btn-info showActualizar" style="width:100%;">Modificar cita</a>
+                  <input type="submit" class="btn btn-info parapost actualizarCita" id="cita" value="Actualizar cita" style="width:100%;">
+              </div>  
+          </div>
         </form>
-        </div>
         <div class="row" style="padding-top:2%;">
-            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8 col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-offset-2">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <h4 class="list-group-item-heading">Comentarios</h4>
+                    <!--<p class="list-group-item-text">{{comentario.coment}}</p>-->
+                  </a>
+            {% for comentario in comentarios %}
+                
+                  <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{comentario.fecha}}</h4>
+                    <p class="list-group-item-text">{{comentario.coment}}</p>
+                  </a>
+                  
+                
+            {% endfor %}
+             </div>
             </div>
         </div>  
     
 </div>
-  <!--  <div class="input-group date" data-provide="datepicker">
-    <input type="text" class="form-control datepicker">
-    <div class="input-group-addon">
-        <span class="glyphicon glyphicon-th"></span>
-    </div>
-    </div> -->
 
 {% endblock content %}
 
@@ -115,6 +137,22 @@
     <script>
         $(document).ready(function(){
             $('.datepicker').datepicker();
+            $('.actualizarCita').css("display","none");
+            $('#comentario').removeAttr('required');
         });
+
+        $(".parapost").on('click',function(){
+            var id = $(this).attr('id');
+            console.log(id);
+            $("#hidden").attr("value",id);
+        });
+
+        $(".showActualizar").on('click',function(){
+            $(this).css("display","none");  
+            $('.actualizarCita').css('display',"block");
+            $('#cita').removeAttr('readonly required');
+        });
+
+
     </script>
 {% endblock otherscripts %}
