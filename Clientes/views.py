@@ -18,28 +18,7 @@ class Registros	(View):
 		context = {'registros':registros, 'counter':counter}
 		return render(request, template_name, context)
 
-	def post(self,request):
-		data = request.POST.get('hidden')
-		print(data)
-		aidi = request.POST.get('aidi')
-		print(aidi)
-		#cliente = Cliente.objects.get(pk = aidi)
-		if data == 'comentario':
-			form = CommentsForm(request.POST)
-			form_save = form.save(commit=False)
-			if form_save.coment == '':
-				messages.error(request, "Comentario vacio")
-			else:
-				form_save.cliente = Cliente.objects.get(pk = int(aidi))
-				print(form_save)
-				form_save.save()
-				messages.success(request, "Comentario guardado")
-		elif data == 'cita':
-			messages.success(request, "Cita actualizada")
-		return redirect('seguimiento:detalle', id = int(aidi))
-
-
-class Detalle(View):
+class Detalle (View):
 	@method_decorator(login_required)
 	def get(self, request, id):
 		template_name = "clientes/detalle.html"
@@ -50,12 +29,34 @@ class Detalle(View):
 		context = {'editform':editform,'registro':registro,'comentarios':comentarios,'comentariosform':comentariosform}
 		return render(request, template_name, context)
 
-	def post(self,request):
+	def post(self,request, id):
 		data = request.POST.get('hidden')
 		print(data)
 		aidi = request.POST.get('aidi')
 		print(aidi)
+		#cliente = Cliente.objects.get(pk = aidi)
+		if data == 'comentarioBtn':
+			form = CommentsForm(request.POST)
+			form_save = form.save(commit=False)
+			if form_save.coment == '':
+				messages.error(request, "Comentario vacio")
+			else:
+				form_save.cliente = Cliente.objects.get(pk = int(aidi))
+				form_save.save()
+				messages.success(request, "Comentario guardado")
+		elif data == 'cita':
+			fecha = Cliente.objects.get(pk = int(aidi))
+			#fechaform = fecha.save(commit = False)
+			fecha.cita = request.POST.get('cita')
+			print(fecha.cita)
+			fecha.save()
+			#print(fecha)
+			#if fecha.is_valid():
+			#	fecha_save = fecha.save(commit=False)
+			#	fecha_save.save()
+			#	messages.success(request, "Cita actualizada")
 		return redirect('seguimiento:detalle', id = int(aidi))
+
 
 
 class Cerrar(View):

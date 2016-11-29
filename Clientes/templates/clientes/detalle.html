@@ -23,6 +23,11 @@
            
         </div>
     </div>
+    <!--{%if messages%}
+    {% for message in messages %}
+        <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {%endif%}-->
     <div class="container" style="padding-top:5%;">
     <div class="row">
         <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
@@ -79,7 +84,7 @@
         </div>
     </div>
     
-	   <form action="." method="POST" enctype="multipart/form-data">
+	   <form action="{% url 'seguimiento:detalle' registro.id%}" method="POST" enctype="multipart/form-data">
 		  {%csrf_token%}
         <div class="row">
           <div class="form-group">
@@ -136,9 +141,16 @@
 {% block otherscripts %}
     <script>
         $(document).ready(function(){
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({
+              format: 'yyyy-mm-dd',
+            });
             $('.actualizarCita').css("display","none");
             $('#comentario').removeAttr('required');
+            $('.success').addClass("alert alert-success");
+            $('.success').attr("role", "alert");
+            $('.error').addClass("alert alert-danger");
+            $('.error').attr("role", "alert");
+            $('.datepicker').attr("disabled","true");
         });
 
         $(".parapost").on('click',function(){
@@ -150,7 +162,8 @@
         $(".showActualizar").on('click',function(){
             $(this).css("display","none");  
             $('.actualizarCita').css('display',"block");
-            $('#cita').removeAttr('readonly required');
+            $('#cita').removeAttr('readonly required disabled');
+
         });
 
 
