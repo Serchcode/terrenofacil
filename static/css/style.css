@@ -316,4 +316,39 @@ min-height: 500px;
   padding-bottom: 25px;
 }
   
+/*=====================================
+  ESTILOS DE DETALLE REGISTRO
+    ===================================*/
 
+.containerdetailview{
+  padding-top: 7%;
+}
+.detailusertop{
+  border-color: #FF5722 !important;
+}
+.detailuser{
+  background-color: #FF5722 !important;
+  opacity: 0.9;
+  border-color: #FF5722 !important;
+}
+
+.detailuserbody{
+  border-color: #FF5722 !important;
+  }
+
+.blankcolor{
+  color: #fff !important;
+}
+
+@media screen and (max-width: 1000px){
+  .containerdetailview{
+    padding-top: 18% !important;
+    /*display: none;*/
+  }
+}
+
+@media screen and (max-width: 800px){
+  .commentButtonDiv{
+    padding-bottom: 1em;
+  }
+}
