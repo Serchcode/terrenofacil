@@ -99,7 +99,64 @@ min-height: 500px;
     }
 
 
+.parpadeo{
+  animation-name: parpadeo;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+@-moz-keyframes parpadeo{
+  0% {color:#FF5722S;}
+  50% { color: #000000;}
+  100%{ color: #FF5722S;}
+}
+
+@-webkit-keyframes parpadeo {  
+  0% {color:#FF5722;}
+  50% { color: #000000;}
+  100%{ color: #FF5722;}
+}
+  
+@keyframes parpadeo {  
+ 0% {color:#FF5722;}
+  50% { color: #000000;}
+  100%{ color: #FF5722;}
+}
+
+.parpadeo-inverse{
+  animation-name: parpadeo-inverse;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo-inverse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+@-moz-keyframes parpadeo-inverse{
+  0% {color:#000000;}
+  50% { color: #FF5722;}
+  100%{ color: #000000;}
+}
+
+@-webkit-keyframes parpadeo-inverse {  
+  0% {color:#000000;}
+  50% { color: #FF5722;}
+  100%{ color: #000000;}
+}
+  
+@keyframes parpadeo-inverse {  
+  0% {color:#000000;}
+  50% { color: #FF5722;}
+  100%{ color: #000000;}
+
+}
     /*=====================================
   ESILOS DE CONTACTO
     ===================================*/
@@ -136,6 +193,9 @@ min-height: 500px;
   text-align: center;
 }
 
+.registrate{
+  text-align:center;
+}
 /*=====================================
   ESTILOS DE MENSAJES DESPUES DEL CONTACTO JAJAJAJ
     ===================================*/
@@ -166,6 +226,11 @@ min-height: 500px;
     font-size:20px;
     line-height:35px;
 }
+.no-decoration{
+  text-decoration: none !important;
+  color: #333333;
+}
+
  /*=====================================
   ESTILOS FOOTER
     ===================================*/
@@ -222,6 +287,7 @@ min-height: 500px;
   {
     padding-top: 50px;
   }
+
 }
 
 .center {
@@ -250,4 +316,39 @@ min-height: 500px;
   padding-bottom: 25px;
 }
   
+/*=====================================
+  ESTILOS DE DETALLE REGISTRO
+    ===================================*/
 
+.containerdetailview{
+  padding-top: 7%;
+}
+.detailusertop{
+  border-color: #FF5722 !important;
+}
+.detailuser{
+  background-color: #FF5722 !important;
+  opacity: 0.9;
+  border-color: #FF5722 !important;
+}
+
+.detailuserbody{
+  border-color: #FF5722 !important;
+  }
+
+.blankcolor{
+  color: #fff !important;
+}
+
+@media screen and (max-width: 1000px){
+  .containerdetailview{
+    padding-top: 18% !important;
+    /*display: none;*/
+  }
+}
+
+@media screen and (max-width: 800px){
+  .commentButtonDiv{
+    padding-bottom: 1em;
+  }
+}

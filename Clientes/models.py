@@ -18,16 +18,37 @@ class Cliente(models.Model):
 		)
 
 	nombre = models.CharField(max_length=100)
-	telefono = models.IntegerField()
+	telefono = models.CharField(max_length=13)
 	correo = models.EmailField(max_length=140)
 	tamano = models.CharField(max_length=5,choices=LENGTH_CHOICES,default="Escoge un tamaño")
 	plazo = models.CharField(max_length=10, choices=PLAZO_PAGO_CHOICES, default="Escoge un plazo")
 	fecha = models.DateField(auto_now=True, blank=True,null=True)
 	hora = models.TimeField(auto_now=True, blank=True, null=True)
+	comentario = models.TextField(blank=True, null=True)
+	cerrado = models.BooleanField(default=False, blank=True)
+	cita = models.DateField(default=None, blank=True, null=True)
+
 	
 	def __str__(self):
 		return 'Cliente: {} se registró el {} a las {}'.format(self.nombre, self.fecha, self.hora)
 
 	class Meta:
 		ordering = ('-fecha','-hora')
-# Create your models here.
+
+class Administradores(models.Model):
+	nombre = models.CharField(max_length=100)
+	apellidos = models.CharField(max_length=140, blank=True, null=True)
+	correo = models.EmailField(max_length=140, blank=True, null=True)
+	username = models.CharField(max_length=140)
+
+class Comentarios(models.Model):
+	cliente = models.ForeignKey(Cliente, related_name='comentarios')
+	fecha = models.DateTimeField(auto_now=True)
+	coment = models.TextField()
+
+	def __str__(self):
+		return 'Nuevo comentario en: {}'.format(self.cliente)
+
+	class Meta:
+		ordering = ('-fecha',)
+

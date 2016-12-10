@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Cliente
+from .models import Cliente, Comentarios
 
 class ClienteForm(forms.ModelForm):
 
@@ -19,14 +19,34 @@ class ClienteForm(forms.ModelForm):
 		('5 años','5 Años'),
 		)
 
-	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre Completo','class':'validate form-control','name':'name',}))
-	telefono = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control','name':'tel','type':'number'}))
-	correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control','type':'email'}))
-	tamano = forms.CharField(widget=forms.Select(choices=LENGTH_CHOICES, attrs={'class':'selectpicker form-control'}))
-	plazo = forms.CharField(widget=forms.Select(choices=PLAZO_PAGO_CHOICES, attrs={'class':'selectpicker form-control'}))
+	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre Completo','class':'validate form-control formclass','name':'name','required':'true'}))
+	telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control formclass','name':'tel','type':'number','maxlength':'13','required':'true'}))
+	correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control formclass','type':'email','required':'true'}))
+	tamano = forms.CharField(widget=forms.Select(choices=LENGTH_CHOICES, attrs={'class':'selectpicker form-control formclass','required':'true'}))
+	plazo = forms.CharField(widget=forms.Select(choices=PLAZO_PAGO_CHOICES, attrs={'class':'selectpicker form-control formclass','required':'true'}))
 
 
 
 	class Meta:
 		model = Cliente
 		fields = ['nombre','telefono','correo','tamano','plazo']
+
+class EditRegistro(forms.ModelForm):
+	
+	cita = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Próxima cita: ','class':'validate form-control formclass datepicker','name':'cita','id':'cita','aria-describedby':'addon','readonly':'true'}))
+
+	class Meta:
+		model = Cliente
+		fields = ['cita']
+
+class CommentsForm(forms.ModelForm):
+
+
+	coment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Ingresa comentario','class':'validate form-control formclass','name':'comentario','id':'comentario','rows':'4'}))
+	
+	#telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control formclass','name':'tel','type':'number','maxlength':'13','required':'true'}))
+	#correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control formclass','type':'email','required':'true'}))
+
+	class Meta:
+		model = Comentarios
+		fields = ['coment']
