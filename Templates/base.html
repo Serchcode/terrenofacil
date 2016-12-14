@@ -19,31 +19,13 @@
   <link href="{%static 'css/themes/themes/green.css'%}" id="mainCSS" rel="stylesheet" />   
   <!-- Google	Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+  <link rel="icon" href="{%static 'media/favicon-96x96.png'%}" type="image/x-icon">
+  <link rel="stylesheet" href="{%static 'css/datepicker.css'%}">
+
   
 </head>
 <body>
-	
-	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img class="logo-custom" src="{%static 'media/logo.png'%}"></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li ><a style="color:#fff;" href="#home">INICIO</a></li>
-                    <li ><a style="color:#fff;" href="#features">CONÓCENOS</a></li>     
-                    <li ><a style="color:#fff;" href="#developers">CONTACTO</a></li>
-                    <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
-                </ul>
-            </div>
-           
-        </div>
-    </div>
+  
 
     {%block content%}
 
@@ -53,7 +35,7 @@
 
     {%block footer%}
     	<div class="myfooter" >
-          	&copy; 2016 terrenofacil Todos los derechos reservados | by: Fixter <a href="http://binarytheme.com" style="color:#fff;" target="_blank"  >www.terrenofacil.com</a>
+          	&copy; 2016 terrenofacil Todos los derechos reservados | by: Fixter <a href="http://fixter.org" style="color:#fff;" target="_blank"  >www.fixter.org</a>
 		</div>
     {%endblock footer%}
 
@@ -69,6 +51,7 @@
     <script src="{%static 'js/styleSwitcher.js'%}"></script>
         <!--  Custom Scripts -->    
     <script src="{%static 'js/custom.js'%}"></script>
+    <script src="{%static 'js/bootstrap-datepicker.js'%}"></script>
     {%endblock scripts%}
 
     {% block otherscripts %}

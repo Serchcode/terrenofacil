@@ -35,6 +35,21 @@ p {
   text-decoration: none;
   color: white;
  }
+
+ .features{
+  color: #fff;
+  background-color: #448aff;
+ }
+
+ .developers{
+  color: #fff;
+  background-color: #448aff;
+ }
+
+ .contact{
+  color: #fff;
+  background-color: #448aff;
+ }
 /*=====================================
   ESTILO DEL NAVBAR 
     ===================================*/
@@ -115,21 +130,21 @@ min-height: 500px;
   -moz-animation-iteration-count: infinite;
 }
 @-moz-keyframes parpadeo{
-  0% {color:#FF5722S;}
+  0% {color:#fff;}
   50% { color: #000000;}
-  100%{ color: #FF5722S;}
+  100%{ color: #fff;}
 }
 
 @-webkit-keyframes parpadeo {  
-  0% {color:#FF5722;}
+  0% {color:#fff;}
   50% { color: #000000;}
-  100%{ color: #FF5722;}
+  100%{ color: #fff;}
 }
   
 @keyframes parpadeo {  
- 0% {color:#FF5722;}
+ 0% {color:#fff;}
   50% { color: #000000;}
-  100%{ color: #FF5722;}
+  100%{ color: #fff;}
 }
 
 .parpadeo-inverse{
@@ -149,19 +164,19 @@ min-height: 500px;
 }
 @-moz-keyframes parpadeo-inverse{
   0% {color:#000000;}
-  50% { color: #FF5722;}
+  50% { color: #fff;}
   100%{ color: #000000;}
 }
 
 @-webkit-keyframes parpadeo-inverse {  
   0% {color:#000000;}
-  50% { color: #FF5722;}
+  50% { color: #fff;}
   100%{ color: #000000;}
 }
   
 @keyframes parpadeo-inverse {  
   0% {color:#000000;}
-  50% { color: #FF5722;}
+  50% { color: #fff;}
   100%{ color: #000000;}
 
 }
@@ -212,7 +227,7 @@ min-height: 500px;
     padding-top: 40px;
     padding-bottom: 60px;
     color:#fff;
-   
+   background-color:#448aff;
 
 }
     .price-sec span {
@@ -234,6 +249,11 @@ min-height: 500px;
     font-size:20px;
     line-height:35px;
 }
+.no-decoration{
+  text-decoration: none !important;
+  color: #333333;
+}
+
  /*=====================================
   ESTILOS FOOTER
     ===================================*/
@@ -319,4 +339,39 @@ min-height: 500px;
   padding-bottom: 25px;
 }
   
+/*=====================================
+  ESTILOS DE DETALLE REGISTRO
+    ===================================*/
 
+.containerdetailview{
+  padding-top: 7%;
+}
+.detailusertop{
+  border-color: #FF5722 !important;
+}
+.detailuser{
+  background-color: #FF5722 !important;
+  opacity: 0.9;
+  border-color: #FF5722 !important;
+}
+
+.detailuserbody{
+  border-color: #FF5722 !important;
+  }
+
+.blankcolor{
+  color: #fff !important;
+}
+
+@media screen and (max-width: 1000px){
+  .containerdetailview{
+    padding-top: 18% !important;
+    /*display: none;*/
+  }
+}
+
+@media screen and (max-width: 800px){
+  .commentButtonDiv{
+    padding-bottom: 1em;
+  }
+}

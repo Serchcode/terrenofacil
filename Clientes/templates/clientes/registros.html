@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="logo-custom" src="{%static 'media/logo.png'%}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONÓCENOS</a></li>     
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONTACTO</a></li>
+                    <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <div class="container" style="padding-top:5%;">
+    {%if messages%}
+    {% for message in messages %}
+        <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {%endif%}
+    	<div class="panel panel-primary detailusertop">
+    		<div class="panel-heading detailuser">Total de Registros: {{counter}}</div>
+    		<div class="panel-body">
+    			<div class="list-group">
+    				{% for registro in registros %}
+                        {% if registro.cerrado == False %}
+                          <div class="list-group-item clearfix">
+                            <span class="pull-left">
+                            <h4 class="list-group-item-heading">{{registro.nombre}}</h4>
+                            <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
+                            </span>
+                            <span class="pull-right">
+                                <a href="{%url 'seguimiento:detalle' registro.id%}">
+                                <button class="btn btn xs btn-success">Ver detalle</button></a>
+                                <button class="btn btn xs btn-warning open-modal-close" data-toggle="modal" data-target="#myModalClose" id="{{registro.id}}" name="{{registro.nombre}}">Cerrar</button>
+                                <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>
+                            </span>
+                        </div>
+                        {% else %}
+                        <div class="list-group-item clearfix">
+                            <span class="pull-left">
+                            <h4 class="list-group-item-heading">{{registro.nombre}}</h4>
+                            <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
+                            </span>
+                            <span class="pull-right">
+                                <a href="{%url 'seguimiento:detalle' registro.id%}">
+                                <button class="btn btn xs btn-success">Ver detalle</button></a>
+                                <button class="btn btn xs btn-warning" disabled="true">Cerrar</button>
+                                <button class="bbtn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>
+                            </span>
+                        </div>
+                        {% endif %}
+    					
+    				{% endfor %}
+    			</div>
+    		</div>
+    	</div>
+        <div id="myModalDelete" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Eliminar registro</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <p>¿Deseas eliminar a <span id="nombremodal"></span><span>?</span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/seguimiento/eliminar/" class="link"><button class="btn btn-lg btn-success">Si</button></a>
+                                        <button class="btn btn-lg btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myModalClose" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Cerrar registro</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <p>¿Deseas cerrar registro de <span id="nombremodalclose"></span><span>?</span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/seguimiento/eliminar/" class="link"><button class="btn btn xs btn-success">Si</button></a>
+                                        <button class="btn btn xs btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    </div>
+{%endblock content%}
+
+{% block otherscripts %}
+<script>
+    $(".open-modal").on("click", function(){
+        var nombre = $(this).attr('name');
+        var id = $(this).attr('id');
+        $("#nombremodal").text(nombre);
+        var href = "/seguimiento/eliminar/";
+        href = href + id;
+        console.log(href);
+        $(".link").attr('href',href);
+    });
+    $(".open-modal-close").on("click", function(){
+        console.log(href);
+        var nombre = $(this).attr('name');
+        var id = $(this).attr('id');
+        $("#nombremodalclose").text(nombre);
+        var href = "/seguimiento/cerrar/";
+        href = href + id;
+        $(".link").attr('href',href);
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('.success').addClass("alert alert-success");
+        $('.success').attr("role", "alert");
+        $('.error').addClass("alert alert-danger");
+        $('.error').attr("role", "alert");
+    });
+</script>
+    
+{% endblock otherscripts %}
