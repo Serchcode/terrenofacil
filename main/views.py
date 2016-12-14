@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
 from Clientes.forms import ClienteForm
 from Clientes.models import Cliente
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 class HomeView(View):
 	def get(self, request):
@@ -15,26 +18,15 @@ class HomeView(View):
 		template_name="hola.html"
 		dataForm = ClienteForm(data=request.POST)
 		if dataForm.is_valid():
-			#asunto = 'Eso es una prueba de envio de correos'
-			#mensaje = dataForm.cleaned_data['mensaje']
-			#mail = EmailMessage(asunto, mensaje, to=['he195621@gmail.com'])
 			saveForm = dataForm.save(commit=False)
-			#send_mail(
-			#	"Invitacion a los XV de ruby",
-			#	"Va aver muchas cosas wuuu",
-			#	"he195621@uaeh.edu.mx",
-			#	["luis.arma92@gmail.com"], fail_silently=False
-			#)
 			saveForm.save()
-			#DAtos del cliente papud
-			#print('Sa guardan muchos datos wuuuuu')
 			cliente_emial=dataForm.data['correo']
 			cliente_nombre=dataForm.data['nombre']
 			cliente_tel=dataForm.data['telefono']
 			cliente_tam = dataForm.data['tamano']
 			cliente_plazo = dataForm.data['plazo']
-			mensaje='Nueva cotizacion yeah'
-			mensaje +='Nombre:'+str(cliente_nombre)
+			mensaje='Nueva cotizacion'
+			mensaje +='\nNombre:'+str(cliente_nombre)
 			mensaje +='\nTelefono: '+str(cliente_tel)
 			mensaje +='\nTamaño '+str(cliente_tam)
 			mensaje +='\nPlazo '+str(cliente_plazo)
@@ -43,19 +35,19 @@ class HomeView(View):
 				send_mail(
 					"Terreno Facil",
 					mensaje,
-					"from@example.com",
-					["he195621@uaeh.edu.mx"], fail_silently=False
+					"provision.sistemas@gmail.com",
+					["provision.sistemas@gmail.com"], fail_silently=False
 				)
-				#Agradecer al cliente
-				send_mail(
-					"Gracias",
-					"Estamoas atendiendo tu mensaje guapo",
-					"he195621@uaeh.edu.mx",
-					[cliente_emial], fail_silently=False
-				)
-			except:
-				pass
-			#mail.send()
+				#Agradecer al cliente usando la funcion y mandano toda la data
+				enviar_correo_cliente({
+					'cliente_emial':cliente_emial,
+					'cliente_nombre':cliente_nombre,
+					'cliente_tel':cliente_tel,
+					'cliente_tam':cliente_tam,
+					'cliente_plazo':cliente_plazo,
+				})
+			except Exception as err:
+				print(err)
 			return redirect('main:gracias')
 		else:
 			context = {'form':dataForm}
@@ -126,9 +118,16 @@ class GraciasView(View):
 		return render(request, template_name)
 
 def enviar_correo_cliente(data):
-	subject = data['asunto']
-	to = [data['correo_cliente']]
-	from_email = 'he195621@gmail.com'
-	messages = get_template('correo.html').render(Context(ctx))
-	msg = EmailMessage(subject,message,to=to,from_email=from_email)
+	subject = 'Gracias'
+	to = [data['cliente_emial']]
+	from_email = 'provision.sistemas@gmail.com'
+	data_for_render = data
+	messages = get_template('email.html').render(Context(data_for_render))
+	msg = EmailMessage(
+		subject,
+		messages,
+		from_email=from_email,
+		to=to,
+	)
+	msg.content_subtype = 'html'
 	msg.send()
