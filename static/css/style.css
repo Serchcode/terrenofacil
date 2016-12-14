@@ -109,6 +109,10 @@ min-height: 500px;
   -webkit-animation-duration: 3s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-name:parpadeo;
+  -moz-animation-duration: 3s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
 }
 @-moz-keyframes parpadeo{
   0% {color:#FF5722S;}
@@ -138,6 +142,10 @@ min-height: 500px;
   -webkit-animation-duration: 3s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-name:parpadeo-inverse;
+  -moz-animation-duration: 3s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
 }
 @-moz-keyframes parpadeo-inverse{
   0% {color:#000000;}
