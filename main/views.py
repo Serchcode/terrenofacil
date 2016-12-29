@@ -21,7 +21,7 @@ class HomeView(View):
 		dataForm = ClienteForm(data=request.POST)
 		if dataForm.is_valid():
 			saveForm = dataForm.save(commit=False)
-			#saveForm.save()
+			saveForm.save()
 			user = User()
 			user.username = saveForm.nombre.replace(" ","")
 			user.first_name = saveForm.nombre.rsplit(' ',1)[0]
@@ -38,12 +38,15 @@ class HomeView(View):
 			cliente_tel=dataForm.data['telefono']
 			cliente_tam = dataForm.data['tamano']
 			cliente_plazo = dataForm.data['plazo']
+			cliente_usuario = user.username
+			cliente_password = password
 			mensaje='Nueva cotizacion'
 			mensaje +='\nNombre:'+str(cliente_nombre)
 			mensaje +='\nTelefono: '+str(cliente_tel)
 			mensaje +='\nTamaño '+str(cliente_tam)
 			mensaje +='\nPlazo '+str(cliente_plazo)
-			Enivar el correo de notificacion al Administrador
+			mensaje +='\nUsuario '+str(cliente_usuario)
+			#Enivar el correo de notificacion al Administrador
 			try:
 				send_mail(
 					"Terreno Facil",
@@ -51,13 +54,15 @@ class HomeView(View):
 					"provision.sistemas@gmail.com",
 					["provision.sistemas@gmail.com"], fail_silently=False
 				)
-				Agradecer al cliente usando la funcion y mandano toda la data
+			#	Agradecer al cliente usando la funcion y mandano toda la data
 				enviar_correo_cliente({
 					'cliente_emial':cliente_emial,
 					'cliente_nombre':cliente_nombre,
 					'cliente_tel':cliente_tel,
 					'cliente_tam':cliente_tam,
 					'cliente_plazo':cliente_plazo,
+					'cliente_usuario':cliente_usuario,
+					'cliente_password':cliente_password
 				})
 			except Exception as err:
 				print(err)
