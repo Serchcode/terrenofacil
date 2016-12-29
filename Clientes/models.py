@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Cliente(models.Model):
 
 	LENGTH_CHOICES = (
@@ -51,4 +50,3 @@ class Comentarios(models.Model):
 
 	class Meta:
 		ordering = ('-fecha',)
-

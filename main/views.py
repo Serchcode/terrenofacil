@@ -7,6 +7,8 @@ from django.template.loader import get_template
 from django.template import Context
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+import string, random
 class HomeView(View):
 	def get(self, request):
 		template_name="hola.html"
@@ -19,7 +21,18 @@ class HomeView(View):
 		dataForm = ClienteForm(data=request.POST)
 		if dataForm.is_valid():
 			saveForm = dataForm.save(commit=False)
-			saveForm.save()
+			#saveForm.save()
+			user = User()
+			user.username = saveForm.nombre.replace(" ","")
+			user.first_name = saveForm.nombre.rsplit(' ',1)[0]
+			last_name = saveForm.nombre.rsplit(' ',2)[1]
+			if(len(saveForm.nombre.split(' ')) > 2):
+				last_name = last_name + ' ' + saveForm.nombre.rsplit(' ',2)[2]
+			user.last_name = last_name
+			user.email = saveForm.correo
+			password = generatePassword()
+			user.set_password(password)
+			user.save()
 			cliente_emial=dataForm.data['correo']
 			cliente_nombre=dataForm.data['nombre']
 			cliente_tel=dataForm.data['telefono']
@@ -30,7 +43,7 @@ class HomeView(View):
 			mensaje +='\nTelefono: '+str(cliente_tel)
 			mensaje +='\nTamaño '+str(cliente_tam)
 			mensaje +='\nPlazo '+str(cliente_plazo)
-			#Enivar el correo de notificacion al Administrador
+			Enivar el correo de notificacion al Administrador
 			try:
 				send_mail(
 					"Terreno Facil",
@@ -38,7 +51,7 @@ class HomeView(View):
 					"provision.sistemas@gmail.com",
 					["provision.sistemas@gmail.com"], fail_silently=False
 				)
-				#Agradecer al cliente usando la funcion y mandano toda la data
+				Agradecer al cliente usando la funcion y mandano toda la data
 				enviar_correo_cliente({
 					'cliente_emial':cliente_emial,
 					'cliente_nombre':cliente_nombre,
@@ -52,6 +65,8 @@ class HomeView(View):
 		else:
 			context = {'form':dataForm}
 			return render(request,template_name,context)
+
+
 #Ase lo mismo que home pero no se usa :(
 class HolaView(View):
 	def get(self, request):
@@ -131,3 +146,10 @@ def enviar_correo_cliente(data):
 	)
 	msg.content_subtype = 'html'
 	msg.send()
+
+def generatePassword():
+		password = ''
+		for i in range(12):
+			var = random.randint(0,51)
+			password = password + string.printable[var]
+		return password
