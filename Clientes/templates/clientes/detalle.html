@@ -14,10 +14,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    {%if request.user.is_superuser%}
+                    <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalClose">CERRAR</a></li>     
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalDelete">ELIMINAR</a></li>
+                    {%endif%}
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
 
@@ -86,7 +88,7 @@
             </div>
         </div>
     </div>
-    
+        {%if request.user.is_autenticated%}
 	   <form action="{% url 'seguimiento:detalle' registro.id%}" method="POST" enctype="multipart/form-data">
 		  {%csrf_token%}
         <div class="row">
@@ -117,6 +119,7 @@
               </div>  
           </div>
         </form>
+        {%endif%}
         <div class="row" style="padding-top:5em;">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
             <div class="list-group">
@@ -138,6 +141,7 @@
         </div>  
     
 </div>
+{%if request.user.is_superuser%}
 <div id="myModalDelete" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -174,7 +178,7 @@
             </div>
         </div>
     </div>
-
+{%endif%}
 {% endblock content %}
 
 {% block otherscripts %}
