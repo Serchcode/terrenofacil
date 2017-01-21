@@ -19,7 +19,8 @@ class ClienteForm(forms.ModelForm):
 		('5 años','5 Años'),
 		)
 
-	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre Completo','class':'validate form-control formclass','name':'name','required':'true'}))
+	nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class':'validate form-control formclass','name':'name','required':'true'}))
+	apellidos = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Apellidos','class':'validate form-control formclass','name':'apellidos','required':'true'}))
 	telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Teléfono','class':'validate form-control formclass','name':'tel','type':'number','maxlength':'13','required':'true'}))
 	correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Correo electrónico','class':'validate form-control formclass','type':'email','required':'true'}))
 	tamano = forms.CharField(widget=forms.Select(choices=LENGTH_CHOICES, attrs={'class':'selectpicker form-control formclass','required':'true'}))
@@ -29,7 +30,7 @@ class ClienteForm(forms.ModelForm):
 
 	class Meta:
 		model = Cliente
-		fields = ['nombre','telefono','correo','tamano','plazo']
+		fields = ['nombre','apellidos','telefono','correo','tamano','plazo']
 
 class EditRegistro(forms.ModelForm):
 	

@@ -17,6 +17,7 @@ class Cliente(models.Model):
 		)
 
 	nombre = models.CharField(max_length=100)
+	apellidos = models.CharField(max_length=140, blank=True, null=True)
 	telefono = models.CharField(max_length=13)
 	correo = models.EmailField(max_length=140)
 	tamano = models.CharField(max_length=5,choices=LENGTH_CHOICES,default="Escoge un tamaño")
@@ -29,7 +30,7 @@ class Cliente(models.Model):
 
 	
 	def __str__(self):
-		return 'Cliente: {} se registró el {} a las {}'.format(self.nombre, self.fecha, self.hora)
+		return 'Cliente: {} {} se registró el {} a las {}'.format(self.nombre, self.apellidos, self.fecha, self.hora)
 
 	class Meta:
 		ordering = ('-fecha','-hora')
