@@ -11,15 +11,6 @@ from .models import Cliente
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import EditRegistro, CommentsForm
 
-class Seguimiento(View):
-	@method_decorator(login_required)
-	def get(self, request):
-		print(request.user)
-		if request.user.is_superuser:
-			return redirect('seguimiento:registros')
-		else:
-			return redirect('seguimiento:dashboard')
-			
 class Registros	(View):
 	@method_decorator(login_required)
 	def get(self, request):
@@ -30,7 +21,7 @@ class Registros	(View):
 			context = {'registros':registros, 'counter':counter}
 			return render(request, template_name, context)
 		else:
-			raise PermissionDenied
+			return redirect('seguimiento:dashboard')
 
 class Detalle (View):
 	@method_decorator(login_required)

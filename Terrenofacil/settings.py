@@ -130,7 +130,7 @@ MEDIA_URL = '/media/'
 
 
 LOGIN_URL = '/seguimiento/login/'
-LOGIN_REDIRECT_URL = '/seguimiento/'
+LOGIN_REDIRECT_URL = '/seguimiento/registros'
 
 #Configuracion para enviar correos PAPUD
 EMAIL_USE_TLS = True
