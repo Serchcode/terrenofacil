@@ -1,5 +1,6 @@
 from django import forms 
 from .models import Cliente, Comentarios
+from django.contrib.auth.models import User
 
 class ClienteForm(forms.ModelForm):
 
@@ -51,3 +52,11 @@ class CommentsForm(forms.ModelForm):
 	class Meta:
 		model = Comentarios
 		fields = ['coment']
+
+class EditClientUser(forms.ModelForm):
+
+	username = forms.CharField(widget=forms.TextInput(attrs={'class':'validate form-control formclass','name':'username','required':'true'}))
+	class Meta:
+		model = User
+		fields = ['username']	
+

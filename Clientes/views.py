@@ -8,8 +8,9 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from .models import Cliente
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import EditRegistro, CommentsForm
+from .forms import EditRegistro, CommentsForm, ClienteForm, EditClientUser
 
 class Registros	(View):
 	@method_decorator(login_required)
@@ -79,6 +80,45 @@ class Dashboard(View):
 		comentarios = registro.comentarios.all()
 		context = {'registro':registro,'comentarios':comentarios}
 		return render(request, template_name, context)
+
+class Edit(View):
+	@method_decorator(login_required)
+	def get(self,request):
+		template_name = "clientes/editarCliente.html"
+		email_user = request.user.email
+		registro = Cliente.objects.get(correo = email_user)
+		form_Cliente = ClienteForm(instance = registro)
+		form_User = EditClientUser(instance = request.user)
+		print(form_User)
+		context = {
+			'form_Cliente':form_Cliente,
+			'form_User': form_User
+		}
+		return render(request, template_name, context)
+	def post(self,request):
+		registro = Cliente.objects.get(correo = request.user.email)
+		form_Cliente = ClienteForm(data=request.POST, instance=registro)
+		username_form = EditClientUser(data=request.POST)
+		if form_Cliente.is_valid():
+			form_Cliente_save = form_Cliente.save(commit=False)
+			user_update = User.objects.get(pk=request.user.id)
+			user_update.first_name = form_Cliente_save.nombre
+			user_update.email = form_Cliente_save.correo
+			user_update.last_name = form_Cliente_save.apellidos
+			if username_form.is_valid():
+				username_update = username_form.save(commit=False)
+				user_update.username = username_update.username
+			form_Cliente_save.save()
+			user_update.save()
+			messages.success(request,'Se han actualizado tus datos')
+			return redirect('seguimiento:dashboard')
+		else:
+			messages.error(request,'Hubo un error al guardar tus datos')
+			return redirect('seguimiento:edit')
+
+
+
+
 
 class Cerrar(View):
 	@method_decorator(login_required)

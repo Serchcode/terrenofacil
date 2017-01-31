@@ -398,3 +398,7 @@ min-height: 650px;
     width: 100%;
     height: 100%;
 }
+
+.padding-bottom-form{
+  padding-bottom: 10% !important;
+}

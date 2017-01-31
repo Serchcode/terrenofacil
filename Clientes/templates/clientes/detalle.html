@@ -19,6 +19,8 @@
                     <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalClose">CERRAR</a></li>     
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalDelete">ELIMINAR</a></li>
+                    {%else%}
+                    <li><a style="color:#fff;" href="{% url 'seguimiento:edit'%}">EDITAR</a></li>
                     {%endif%}
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
@@ -28,11 +30,11 @@
            
         </div>
     </div>
-    <!--{%if messages%}
+    {%if messages%}
     {% for message in messages %}
         <div class="{{message.tags}}">{{message}}</div>
     {% endfor %}
-    {%endif%}-->
+    {%endif%}
     <div class="container containerdetailview">
     <div class="row">
         <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
@@ -194,6 +196,7 @@
             $('.error').addClass("alert alert-danger");
             $('.error').attr("role", "alert");
             $('.datepicker').attr("disabled","true");
+
         });
 
         $(".parapost").on('click',function(){
