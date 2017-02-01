@@ -21,7 +21,6 @@
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalDelete">ELIMINAR</a></li>
                     {%else%}
                     <li><a style="color:#fff;" href="{% url 'seguimiento:dashboard'%}">REGRESAR A DETALLE</a></li>
-                    <li><a style="color:#fff;" href="{% url 'seguimiento:edit'%}">EDITAR</a></li>
                     {%endif%}
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
@@ -34,7 +33,7 @@
     <div class="container containerdetailview padding-bottom-form">
         <div class="row">
           <!--Formulario de Registro -->
-            <form class="white" method="POST" action="." id="formulario_registro">
+            <form class="white" method="POST" action="{%url 'seguimiento:edit' id%}" id="formulario_registro">
                 {% csrf_token %}
                 <div class="paddings-rows-form">
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">

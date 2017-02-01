@@ -15,13 +15,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
-                    {%if request.user.is_superuser%}
-                    <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
-                    <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalClose">CERRAR</a></li>     
-                    <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalDelete">ELIMINAR</a></li>
-                    {%else%}
-                    <li><a style="color:#fff;" href="{% url 'seguimiento:edit'%}">EDITAR</a></li>
-                    {%endif%}
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
 
@@ -35,6 +28,8 @@
         <div class="{{message.tags}}">{{message}}</div>
     {% endfor %}
     {%endif%}
+    
+    {% for registro in registros %}
     <div class="container containerdetailview">
     <div class="row">
         <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
@@ -90,95 +85,40 @@
             </div>
         </div>
     </div>
-	   <form action="{% url 'seguimiento:detalle' registro.id%}" method="POST" enctype="multipart/form-data">
-		  {%csrf_token%}
-        <div class="row">
-          <div class="form-group">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
-                <label for="comentario">Añadir un comentario</label>
-                  {{comentariosform.coment}}
-              </div>
-              <div class="text-center"><label for="cita" class=>Próxima cita:</label></div>
-              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center input-group date" data-provide="datepicker" style="padding-top:2%;">
-                  {{editform.cita}}
-                  <span class="input-group-addon" id="addon">
-                      <i class="fa fa-calendar"></i>
-                  </span>
-              </div>
-          </div>
-          </div>
-          <br>
-          <input type="hidden" id="hidden" name="hidden">
-          <input type="hidden" id="aidi" name="aidi" value="{{registro.id}}">
-          <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center commentButtonDiv">
-                  <input type="submit" class="btn btn-success parapost" id="comentarioBtn" value="Agregar comentario" style="width:100%;">
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-                  <a class="btn detailuser showActualizar blankcolor" style="width:100%;  color: #fff !important;">Modificar cita</a>
-                  <input type="submit" class="btn detailuser parapost actualizarCita" id="cita" value="Actualizar cita" style="width:100%; color: #fff !important;">
-              </div>  
-          </div>
-        </form>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+                <a href="{% url 'seguimiento:edit' registro.id%}"><button class="btn btn-lg btn-success" type="button" style="width:100%;">Editar información</button></a>
+            </div>
+        </div>
+    </div>
         <div class="row" style="padding-top:5em;">
-            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
             <div class="list-group">
                 <a href="#" class="list-group-item active">
                     <h4 class="list-group-item-heading">Comentarios</h4>
                     <!--<p class="list-group-item-text">{{comentario.coment}}</p>-->
                   </a>
-            {% for comentario in comentarios %}
+            {% for comentario in registro.comentarios.all %}
                 
                   <a href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">{{comentario.fecha}}</h4>
                     <p class="list-group-item-text">{{comentario.coment}}</p>
                   </a>
                   
-                
             {% endfor %}
              </div>
             </div>
+                <div class="text-center" style="padding-top: 2%;"><label for="cita" class=>Próxima cita:</label></div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center input-group" style="padding-top:2%;">
+                  <input type="text" value="{{registro.cita}}" class="validate form-control formclass" readonly="true">
+                  <span class="input-group-addon" id="addon">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+              </div>
         </div>  
-    
-</div>
-{%if request.user.is_superuser%}
-<div id="myModalDelete" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar registro</h4>
-                </div>
-                <div class="modal-body">
-                    
-                    <p>¿Deseas eliminar a {{registro.nombre}} ?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="{%url 'seguimiento:eliminar' registro.id%}" class="link"><button class="btn btn-lg btn-success">Si</button></a>
-                    <button class="btn btn-lg btn-danger" data-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
     </div>
-    <div id="myModalClose" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Cerrar registro</h4>
-                </div>
-                <div class="modal-body">
-                    
-                    <p>¿Deseas cerrar registro de {{registro.nombre}} ?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="{%url 'seguimiento:cerrar' registro.id%}" class="link"><button class="btn btn xs btn-success">Si</button></a>
-                    <button class="btn btn xs btn-danger" data-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-{%endif%}
+    {%endfor%}
 {% endblock content %}
 
 {% block otherscripts %}

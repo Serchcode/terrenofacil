@@ -73,30 +73,34 @@ class Detalle (View):
 class Dashboard(View):
 	@method_decorator(login_required)
 	def get(self, request):
-		template_name = "clientes/detalle.html"
+		comentarios = []
+		template_name = "clientes/dashboard.html"
 		email_user = request.user.email
-		print(email_user)
-		registro = Cliente.objects.get(correo = email_user)
-		comentarios = registro.comentarios.all()
-		context = {'registro':registro,'comentarios':comentarios}
+		registros = Cliente.objects.filter(correo = email_user)
+		#for reg in registro:
+		#	comentarios.append(reg.comentarios.all())
+		#print(comentarios)
+		context = {'registros':registros}
 		return render(request, template_name, context)
 
 class Edit(View):
 	@method_decorator(login_required)
-	def get(self,request):
+	def get(self,request,id):
 		template_name = "clientes/editarCliente.html"
 		email_user = request.user.email
-		registro = Cliente.objects.get(correo = email_user)
+		registro = Cliente.objects.get(id = id)
 		form_Cliente = ClienteForm(instance = registro)
 		form_User = EditClientUser(instance = request.user)
 		print(form_User)
 		context = {
 			'form_Cliente':form_Cliente,
-			'form_User': form_User
+			'form_User': form_User,
+			'id':id
 		}
 		return render(request, template_name, context)
-	def post(self,request):
-		registro = Cliente.objects.get(correo = request.user.email)
+
+	def post(self,request, id):
+		registro = Cliente.objects.get(id = id)
 		form_Cliente = ClienteForm(data=request.POST, instance=registro)
 		username_form = EditClientUser(data=request.POST)
 		if form_Cliente.is_valid():
