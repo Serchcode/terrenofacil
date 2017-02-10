@@ -20,4 +20,4 @@ class Venta(models.Model):
 			self.fecha, self.hora)
 
 	class Meta:
-		ordering = ('-fecha','hora') 
+		ordering = ('-fecha','-hora') 

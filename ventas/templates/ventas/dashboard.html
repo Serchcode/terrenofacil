@@ -52,6 +52,33 @@
                             </span>
                         </div>
     				{% endfor %}
+                    {% if ventas_realizadas|length >= 10 %}
+                    <span class="step-links text-center">
+                        <nav aria-label="page navigation">
+                            <ul class="pagination pagination-lg">
+                                {% if ventas_realizadas.has_previous %}
+                                    <li><a aria-label="Previous" href="?page={{ ventas_realizadas.previous_page_number }}">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a></li>
+                                {% endif %}
+
+                                {% for i in range %}
+                                    {% ifequal i ventas_realizadas.number %} 
+                                        <li class="active"><a href="#"><b>{{i}}</b></a></li>    
+                                    {% else %}
+                                    <li><a href="?page={{i}}">{{i}}</a></li>
+                                    {% endifequal %}
+                                {% endfor %}
+
+                                {% if ventas_realizadas.has_next %}
+                                    <li><a aria-label="Next" href="?page={{ ventas_realizadas.next_page_number }}">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a></li>
+                                {% endif %}
+                            </ul>
+                        </nav> 
+                    </span>
+                    {% endif %}
     			</div>
     		</div>
     	</div>

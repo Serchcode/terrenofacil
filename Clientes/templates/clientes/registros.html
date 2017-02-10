@@ -15,10 +15,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    {% if request.user.is.superuser == false %}
+                        <li ><a style="color:#fff;" href="{%url 'ventas:finalizadas'%}">VENTAS FINALIZADAS</a></li> 
+                        <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
+                        <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>
+                    {% else %}
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONÓCENOS</a></li>     
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONTACTO</a></li>
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
+                    {% endif %}
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
                 </ul>
             </div>
@@ -73,6 +79,7 @@
     				{% endfor %}
     			</div>
     		</div>
+            {% if counter > 10 %}
             <span class="step-links text-center">
                 <nav aria-label="page navigation">
                     <ul class="pagination pagination-lg">
@@ -96,9 +103,9 @@
                             </a></li>
                         {% endif %}
                     </ul>
-                </nav> 
-
+                </nav>
             </span>
+            {% endif %}
     	</div>
         {% if request.user.is_superuser %}
             <div id="myModalDelete" class="modal fade" role="dialog">

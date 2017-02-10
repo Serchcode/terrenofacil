@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="logo-custom" src="{%static 'media/logo.png'%}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'seguimiento:registros'%}">REGISTROS</a></li>     
+                    <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'ventas:finalizadas'%}">REGRESAR A VENTAS</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    {%if messages%}
+    {% for message in messages %}
+        <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {%endif%}
+
+    <div class="container containerdetailview">
+    <div class="row">
+        <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Nombre</div>
+                </div>
+                <div class="panel-body detailuserbody">
+                    <p>{{venta.nombre}} {{venta.apellidos}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Correo</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.correo}}</p>
+                </div>
+            </div>
+            {% if venta.correo_alterno %}
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Correo Alterno</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.correo_alterno}}</p>
+                </div>
+            </div>
+            {% endif %}
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Plazo</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.plazo}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Fecha de venta</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.fecha}} a las {{venta.hora}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-dm-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Vendedor</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.vendedor}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Teléfono</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.telefono}}</p>
+                </div>
+            </div>
+            {% if venta.telefono_alterno %}
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Teléfono Alterno</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.telefono_alterno}}</p>
+                </div>
+            </div>
+            {% endif %}
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Tamaño</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.tamano}}</p>
+                </div>
+            </div>
+            <div class="panel panel-primary detailusertop">
+                <div class="panel-heading detailuser">
+                    <div class="panel-title">Ubicación</div>
+                </div>
+                <div class="panel-body">
+                    <p>{{venta.ubicacion}}</p>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% if request.user == venta.vendedor %}
+        <div class="row padding-bottom-small">
+            <div class="form-group">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+                    <a href="{% url 'ventas:edit' venta.id%}"><button class="btn btn-lg btn-success" type="button" style="width:100%;">Editar venta</button></a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block otherscripts %}
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+              format: 'yyyy-mm-dd',
+            });
+            $('.actualizarCita').css("display","none");
+            $('#comentario').removeAttr('required');
+            $('.success').addClass("alert alert-success");
+            $('.success').attr("role", "alert");
+            $('.error').addClass("alert alert-danger");
+            $('.error').attr("role", "alert");
+            $('.datepicker').attr("disabled","true");
+
+        });
+
+        $(".parapost").on('click',function(){
+            var id = $(this).attr('id');
+            console.log(id);
+            $("#hidden").attr("value",id);
+        });
+
+        $(".showActualizar").on('click',function(){
+            $(this).css("display","none");  
+            $('.actualizarCita').css('display',"block");
+            $('#cita').removeAttr('readonly required disabled');
+
+        });
+
+
+    </script>
+{% endblock otherscripts %}
