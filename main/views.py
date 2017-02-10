@@ -23,37 +23,31 @@ class HomeView(View):
 		if dataForm.is_valid():
 			saveForm = dataForm.save(commit=False)
 			saveForm.save()
-			user = User()
-			#user.username = saveForm.nombre.replace(" ","")
-			#user.first_name = saveForm.nombre.rsplit(' ',1)[0]
-			#last_name = saveForm.nombre.rsplit(' ',2)[1]
-			#if(len(saveForm.nombre.split(' ')) > 2):
-			#	last_name = last_name + ' ' + saveForm.nombre.rsplit(' ',2)[2]
-			#user.last_name = last_name
-			apellidos_sin_espacios = saveForm.apellidos.replace(" ","")
-			user.username = saveForm.nombre + apellidos_sin_espacios
-			user.first_name = saveForm.nombre
-			user.last_name = saveForm.apellidos
-			user.email = saveForm.correo
-			password = generatePassword()
-			print(user.username)
-			print(password)
-			user.set_password(password)
-			user.save()
+			#user = User()
+			#apellidos_sin_espacios = saveForm.apellidos.replace(" ","")
+			#user.username = saveForm.nombre + apellidos_sin_espacios
+			#user.first_name = saveForm.nombre
+			#user.last_name = saveForm.apellidos
+			#user.email = saveForm.correo
+			#password = generatePassword()
+			#print(user.username)
+			#print(password)
+			#user.set_password(password)
+			#user.save()
 			cliente_emial=dataForm.data['correo']
 			cliente_nombre=dataForm.data['nombre']
-			cliente_apellidos = user.last_name
+			cliente_apellidos = dataForm.data['apellidos']
 			cliente_tel=dataForm.data['telefono']
 			cliente_tam = dataForm.data['tamano']
 			cliente_plazo = dataForm.data['plazo']
-			cliente_usuario = user.username
-			cliente_password = password
+			#cliente_usuario = user.username
+			#cliente_password = password
 			mensaje='Nueva cotizacion'
 			mensaje +='\nNombre:'+str(cliente_nombre)
 			mensaje +='\nTelefono: '+str(cliente_tel)
 			mensaje +='\nTamaño '+str(cliente_tam)
 			mensaje +='\nPlazo '+str(cliente_plazo)
-			mensaje +='\nUsuario '+str(cliente_usuario)
+			#mensaje +='\nUsuario '+str(cliente_usuario)
 			#Enivar el correo de notificacion al Administrador
 			try:
 				send_mail(
@@ -70,8 +64,8 @@ class HomeView(View):
 					'cliente_tel':cliente_tel,
 					'cliente_tam':cliente_tam,
 					'cliente_plazo':cliente_plazo,
-					'cliente_usuario':cliente_usuario,
-					'cliente_password':cliente_password
+					#'cliente_usuario':cliente_usuario,
+					#'cliente_password':cliente_password
 				})
 			except Exception as err:
 				print(err)

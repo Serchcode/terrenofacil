@@ -45,8 +45,11 @@
                             <span class="pull-right">
                                 <a href="{%url 'seguimiento:detalle' registro.id%}">
                                 <button class="btn btn xs btn-success">Ver detalle</button></a>
-                                <button class="btn btn xs btn-warning open-modal-close" data-toggle="modal" data-target="#myModalClose" id="{{registro.id}}" name="{{registro.nombre}}">Cerrar</button>
-                                <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>
+                                {% if request.user.is_superuser %}
+                                    <button class="btn btn xs btn-warning open-modal-close" data-toggle="modal" data-target="#myModalClose" id="{{registro.id}}" name="{{registro.nombre}}">Cerrar</button>
+                                    <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>   
+                                {% endif %}
+                                
                             </span>
                         </div>
                         {% else %}
@@ -58,8 +61,11 @@
                             <span class="pull-right">
                                 <a href="{%url 'seguimiento:detalle' registro.id%}">
                                 <button class="btn btn xs btn-success">Ver detalle</button></a>
-                                <button class="btn btn xs btn-warning" disabled="true">Cerrar</button>
-                                <button class="bbtn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>
+                                {% if request.user.is_superuser %}
+                                    <button class="btn btn xs btn-warning" disabled="true">Cerrar</button>
+                                    <button class="bbtn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>    
+                                {% endif %}
+                                
                             </span>
                         </div>
                         {% endif %}
@@ -67,8 +73,35 @@
     				{% endfor %}
     			</div>
     		</div>
+            <span class="step-links text-center">
+                <nav aria-label="page navigation">
+                    <ul class="pagination pagination-lg">
+                        {% if registros.has_previous %}
+                            <li><a aria-label="Previous" href="?page={{ registros.previous_page_number }}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a></li>
+                        {% endif %}
+
+                        {% for i in range %}
+                            {% ifequal i registros.number %} 
+                                <li class="active"><a href="#"><b>{{i}}</b></a></li>    
+                            {% else %}
+                            <li><a href="?page={{i}}">{{i}}</a></li>
+                            {% endifequal %}
+                        {% endfor %}
+
+                        {% if registros.has_next %}
+                            <li><a aria-label="Next" href="?page={{ registros.next_page_number }}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a></li>
+                        {% endif %}
+                    </ul>
+                </nav> 
+
+            </span>
     	</div>
-        <div id="myModalDelete" class="modal fade" role="dialog">
+        {% if request.user.is_superuser %}
+            <div id="myModalDelete" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -104,6 +137,8 @@
                                 </div>
                             </div>
                         </div>
+        {% endif %}
+        
     </div>
 {%endblock content%}
 

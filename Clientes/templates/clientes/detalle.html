@@ -16,12 +16,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
                     {%if request.user.is_superuser%}
-                    <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalClose">CERRAR</a></li>     
                     <li ><a style="color:#fff;" class="open-modal" data-toggle="modal" data-target="#myModalDelete">ELIMINAR</a></li>
+                    {% elif request.user.is_staff%}
                     {%else%}
                     <li><a style="color:#fff;" href="{% url 'seguimiento:edit'%}">EDITAR</a></li>
                     {%endif%}
+                    <li><a style="color:#fff;" href="{% url 'seguimiento:registros'%}">REGRESAR A REGISTROS</a></li>
                     <li ><a style="color:#fff;" target="_top"><i class="fa fa-phone"></i><span class="home-mail">Llámanos 63559341</span></a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
 

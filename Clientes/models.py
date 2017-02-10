@@ -35,11 +35,6 @@ class Cliente(models.Model):
 	class Meta:
 		ordering = ('-fecha','-hora')
 
-class Administradores(models.Model):
-	nombre = models.CharField(max_length=100)
-	apellidos = models.CharField(max_length=140, blank=True, null=True)
-	correo = models.EmailField(max_length=140, blank=True, null=True)
-	username = models.CharField(max_length=140)
 
 class Comentarios(models.Model):
 	cliente = models.ForeignKey(Cliente, related_name='comentarios')

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<div class="navbar navbar-inverse navbar-fixed-top move-me" id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img class="logo-custom" src="{%static 'media/logo.png'%}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'seguimiento:registros'%}">REGISTROS</a></li>     
+                    <li ><a style="color:#fff;" href="{%url 'ventas:finalizadas'%}">VENTAS FINALIZADAS</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+    <div class="container" style="padding-top:5%; padding-bottom:5%;">
+    <h4><b>Nota: </b>campos con * son requeridos</h4>
+    <form action="." method="POST">
+    {%csrf_token%}
+    {% for field in form_venta %}
+        {% if field.field.required %}
+        <b>*{{field.label}}</b>
+        {% else %}
+        {{field.label}} 
+        {% endif %}
+        {{field}}
+    {% endfor %}
+    <input type="submit" value="Guardar compra">
+    </form>
+    </div>
+{% endblock content%}
