@@ -25,7 +25,7 @@
            
         </div>
     </div>
-    <div class="container" style="padding-top:5%;">
+    <div class="container">
     {%if messages%}
     {% for message in messages %}
         <div class="{{message.tags}}">{{message}}</div>
@@ -48,6 +48,7 @@
                             <span class="pull-right text-center">
                                 <a href="{%url 'ventas:finalizadas_detail' venta.id%}">
                                 <button class="btn btn md btn-success">Ver detalle</button></a>
+                                <a href="{%url 'ventas:edit' venta.id%}"><button class="btn btn xs btn-warning">Editar</button></a>
                                 <p class="list-group-item-text">{{venta.fecha}} a las {{venta.hora}}</p>
                             </span>
                         </div>

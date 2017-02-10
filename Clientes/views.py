@@ -15,7 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class VerifyUser(View):
 	@method_decorator(login_required)
-	def get(self,request):
+	def get(self, request):
 		if request.user.is_superuser:
 			return redirect('seguimiento:registros')
 		else:

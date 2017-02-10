@@ -27,17 +27,22 @@
     </div>
     <div class="container" style="padding-top:5%; padding-bottom:5%;">
     <h4><b>Nota: </b>campos con * son requeridos</h4>
-    <form action="." method="POST">
-    {%csrf_token%}
-    {% for field in form_venta %}
-        {% if field.field.required %}
-        <b>*{{field.label}}</b>
-        {% else %}
-        {{field.label}} 
-        {% endif %}
-        {{field}}
-    {% endfor %}
-    <input type="submit" value="Guardar venta">
-    </form>
+        <form action="{% url 'ventas:edit' id%}" method="POST">
+        <div class="row">
+        {%csrf_token%}
+        {% for field in form_venta %}
+            {% if field.field.required %}
+            <b>* {{field.label}}</b>
+            {% else %}
+            {{field.label}} 
+            {% endif %}
+            {{field}}
+        {% endfor %}
+        </div>
+        <div class="row padding-paralelo">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+                <input type="submit" class="btn btn-success form-control" value="Actualizar venta"></input>
+              </div></div></div>
+        </form>
     </div>
 {% endblock content%}

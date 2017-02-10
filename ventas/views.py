@@ -4,8 +4,11 @@ from .models import Venta
 from .forms import VentaForm
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib import messages
 class Dashboard(View):
 	def get(self,request):
 		template_name = "ventas/dashboard.html"
@@ -58,4 +61,31 @@ class Finalizadas_Detalle(View):
 		return render(request, template_name, context)
 
 class Editar(View):
-	pass
+	def get(self, request, id):
+		if request.user.is_superuser == False and request.user.is_staff:
+			template_name = "ventas/edit.html"
+			venta = Venta.objects.get(id = id)
+			venta_form = VentaForm(instance = venta)
+			context = {'form_venta':venta_form, 'id':id}
+			print(venta_form)
+			return render(request, template_name, context)
+		else:
+			raise PermissionDenied
+
+	def post(self, request, id):
+		if request.user.is_superuser == False and request.user.is_staff:
+			venta_to_edit = Venta.objects.get(id = id)
+			venta_form = VentaForm(data=request.POST, instance=venta_to_edit)
+			if venta_form.is_valid():
+				venta_form_save = venta_form.save(commit=False)
+				venta_form_save.save()
+				messages.success(request, "Se actualizó la venta de "+venta_form_save.nombre+" "+venta_form_save.apellidos+" correctamente")
+				return redirect('ventas:dashboard')
+			else:
+				template_name = "ventas/edit.html"
+				context = {'form_venta':venta_form}
+				messages.error(request, "Ocurrio un error al actualizar")
+				return render(request, template_name, context)
+		else:
+			raise PermissionDenied
+

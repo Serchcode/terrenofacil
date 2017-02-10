@@ -13,5 +13,5 @@ class VentaForm(forms.ModelForm):
 	ubicacion = forms.CharField(widget=forms.Textarea(attrs={'placeholder':'Describe la ubicación','class':'validate form-control formclass','required':'true'}))
 	class Meta:
 		model = Venta
-		fields = ['nombre','apellidos','telefono','telefono_alterno','correo','correo_alterno','tamano','plazo',
+		fields = ['nombre','apellidos','correo','correo_alterno','telefono','telefono_alterno','tamano','plazo',
 		'ubicacion']

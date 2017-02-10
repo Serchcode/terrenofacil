@@ -406,3 +406,7 @@ min-height: 650px;
 .padding-bottom-small{
   padding-bottom: 5% !important;
 }
+
+.padding-paralelo{
+  padding-top: 5%;
+}
