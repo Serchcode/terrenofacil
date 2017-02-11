@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Cliente(models.Model):
 
@@ -37,6 +38,7 @@ class Cliente(models.Model):
 
 
 class Comentarios(models.Model):
+	comentador = models.ForeignKey(User, related_name='comentador', blank=True, null=True)
 	cliente = models.ForeignKey(Cliente, related_name='comentarios')
 	fecha = models.DateTimeField(auto_now=True)
 	coment = models.TextField()

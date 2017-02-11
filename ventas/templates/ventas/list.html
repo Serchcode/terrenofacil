@@ -16,9 +16,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
-                    <li ><a style="color:#fff;" href="{%url 'seguimiento:registros'%}">REGISTROS</a></li>     
-                    <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
-                    <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>
+                    <li ><a style="color:#fff;" href="{%url 'seguimiento:registros'%}">REGISTROS</a></li>
+                    {% if request.user.is_superuser == false %}
+                        <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
+                        <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>         
+                    {% endif %}     
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONÓCENOS</a></li>     
+                    <li ><a style="color:#fff;" href="{%url 'main:home'%}">CONTACTO</a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:logout'%}">CERRAR SESION</a></li>
                 </ul>
             </div>
@@ -99,10 +103,10 @@
                                     </div>
                                     <div class="modal-body">
                                         
-                                        <p>¿Deseas eliminar a <span id="nombremodal"></span><span>?</span></p>
+                                        <p>¿Deseas eliminar la venta de <span id="nombremodal"></span><span>?</span></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/seguimiento/eliminar/" class="link"><button class="btn btn-lg btn-success">Si</button></a>
+                                        <a href="/ventas/eliminar/" class="link"><button class="btn btn-lg btn-success">Si</button></a>
                                         <button class="btn btn-lg btn-danger" data-dismiss="modal">No</button>
                                     </div>
                                 </div>
@@ -121,7 +125,7 @@
         var nombre = $(this).attr('name');
         var id = $(this).attr('id');
         $("#nombremodal").text(nombre);
-        var href = "/seguimiento/eliminar/";
+        var href = "/ventas/eliminar/";
         href = href + id;
         console.log(href);
         $(".link").attr('href',href);

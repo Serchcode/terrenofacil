@@ -58,7 +58,7 @@ class Detalle (View):
 
 	@method_decorator(login_required)
 	def post(self,request, id):
-		if request.user.is_superuser:
+		if request.user.is_staff:
 			data = request.POST.get('hidden')
 			print(data)
 			aidi = request.POST.get('aidi')
@@ -67,6 +67,7 @@ class Detalle (View):
 			if data == 'comentarioBtn':
 				form = CommentsForm(request.POST)
 				form_save = form.save(commit=False)
+				form_save.comentador = request.user
 				if form_save.coment == '':
 					messages.error(request, "Comentario vacio")
 				else:

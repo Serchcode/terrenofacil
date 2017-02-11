@@ -89,3 +89,10 @@ class Editar(View):
 		else:
 			raise PermissionDenied
 
+class Eliminar(View):
+	def get(self,request,id):
+		if request.user.is_superuser:
+			venta_alv = Venta.objects.get(id = id)
+			venta_alv.delete()
+			messages.success(request,'Se ha eliminado la venta exitósamente')
+			return redirect('ventas:finalizadas')
