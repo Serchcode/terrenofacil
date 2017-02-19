@@ -85,6 +85,12 @@ class Detalle (View):
 				#	fecha_save = fecha.save(commit=False)
 				#	fecha_save.save()
 				#	messages.success(request, "Cita actualizada")
+			elif data == 'status':
+				registro = Cliente.objects.get(pk = int(aidi))
+				registro.status = request.POST.get('status')
+				print(registro.status)
+				registro.save()
+
 			return redirect('seguimiento:detalle', id = int(aidi))
 		else:
 			raise PermissionDenied

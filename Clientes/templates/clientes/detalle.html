@@ -95,12 +95,16 @@
 		  {%csrf_token%}
         <div class="row">
           <div class="form-group">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
                 <label for="comentario">Añadir un comentario</label>
                   {{comentariosform.coment}}
               </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <div class="text-center"><label for="status" class=>Status:</label></div>
+                  {{editform.status}}
+              </div>
               <div class="text-center"><label for="cita" class=>Próxima cita:</label></div>
-              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center input-group date" data-provide="datepicker" style="padding-top:2%;">
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center input-group date" data-provide="datepicker">
                   {{editform.cita}}
                   <span class="input-group-addon" id="addon">
                       <i class="fa fa-calendar"></i>
@@ -112,9 +116,12 @@
           <input type="hidden" id="hidden" name="hidden">
           <input type="hidden" id="aidi" name="aidi" value="{{registro.id}}">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center commentButtonDiv">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center commentButtonDiv">
                   <input type="submit" class="btn btn-success parapost" id="comentarioBtn" value="Agregar comentario" style="width:100%;">
               </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center commentButtonDiv">
+                  <input type="submit" class="btn btn-primary parapost" id="status" value="Actualizar status" style="width:100%; color: #fff !important;">
+              </div>  
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
                   <a class="btn detailuser showActualizar blankcolor" style="width:100%;  color: #fff !important;">Modificar cita</a>
                   <input type="submit" class="btn detailuser parapost actualizarCita" id="cita" value="Actualizar cita" style="width:100%; color: #fff !important;">
@@ -188,16 +195,46 @@
 {% block otherscripts %}
     <script>
         $(document).ready(function(){
+
+
             $('.datepicker').datepicker({
               format: 'yyyy-mm-dd',
             });
+
             $('.actualizarCita').css("display","none");
+
+            $('#id_status option').each(function(){
+                var value = $(this).val();
+                if(value == 'verde')
+                {
+                    $(this).css('background-color','#2ECC40');
+                    $(this).css('color','#fff');
+                }
+                else if(value == 'amarillo')
+                {
+                    $(this).css('background-color','#FFDC00');
+                    $(this).css('color','#fff');
+                }
+                else
+                {
+                    $(this).css('background-color','#FF4136');   
+                    $(this).css('color','#fff');
+                }
+            });
+
             $('#comentario').removeAttr('required');
+
             $('.success').addClass("alert alert-success");
+
             $('.success').attr("role", "alert");
+
             $('.error').addClass("alert alert-danger");
+
             $('.error').attr("role", "alert");
+
             $('.datepicker').attr("disabled","true");
+
+
 
         });
 

@@ -35,11 +35,18 @@ class ClienteForm(forms.ModelForm):
 
 class EditRegistro(forms.ModelForm):
 	
+	STATUS_CHOICES = (
+		('verde','Contactado'),
+		('amarillo','En proceso'),
+		('rojo','Sin atender')
+		)
+
 	cita = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Próxima cita: ','class':'validate form-control formclass datepicker','name':'cita','id':'cita','aria-describedby':'addon','readonly':'true'}))
+	status = forms.CharField(widget=forms.Select(choices=STATUS_CHOICES, attrs={'class':'selectpicker form-control formclass','required':'true'}))
 
 	class Meta:
 		model = Cliente
-		fields = ['cita']
+		fields = ['cita','status']
 
 class CommentsForm(forms.ModelForm):
 

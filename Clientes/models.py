@@ -32,7 +32,7 @@ class Cliente(models.Model):
 	fecha = models.DateField(auto_now_add=True, blank=True,null=True)
 	hora = models.TimeField(auto_now_add=True, blank=True, null=True)
 	comentario = models.TextField(blank=True, null=True)
-	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="rojo")
+	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="rojo", blank=True, null=True)
 	cerrado = models.BooleanField(default=False, blank=True)
 	cita = models.DateField(default=None, blank=True, null=True)
 
