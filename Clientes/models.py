@@ -17,6 +17,12 @@ class Cliente(models.Model):
 		('5 años','5 Años'),
 		)
 
+	STATUS_CHOICES = (
+		('verde','Contactado'),
+		('amarillo','En proceso'),
+		('rojo','Sin atender')
+		)
+
 	nombre = models.CharField(max_length=100)
 	apellidos = models.CharField(max_length=140, blank=True, null=True)
 	telefono = models.CharField(max_length=13)
@@ -26,6 +32,7 @@ class Cliente(models.Model):
 	fecha = models.DateField(auto_now_add=True, blank=True,null=True)
 	hora = models.TimeField(auto_now_add=True, blank=True, null=True)
 	comentario = models.TextField(blank=True, null=True)
+	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="rojo")
 	cerrado = models.BooleanField(default=False, blank=True)
 	cita = models.DateField(default=None, blank=True, null=True)
 

@@ -27,7 +27,7 @@
     </div>
     <div class="container" style="padding-top:5%; padding-bottom:5%;">
     <h4><b>Nota: </b> Campos con * son requeridos</h4>
-    <form class="white" method="POST" action="." id="formulario_registro">
+    <form class="white" method="POST" action="{% url 'ventas:edit' id %}" id="formulario_registro">
                 {% csrf_token %}
             <div class="form-group">
               <div class="paddings-rows-form">

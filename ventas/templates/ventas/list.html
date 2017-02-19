@@ -52,7 +52,7 @@
                                 <p class="list-group-item-text">{{venta.fecha}} a las {{venta.hora}}</p>
                                 <a href="{%url 'ventas:finalizadas_detail' venta.id%}">
                                 <button class="btn btn xs btn-success">Ver detalle</button></a>
-                                {% if request.user == venta.vendedor %}
+                                {% if request.user == venta.vendedor or request.user.is_superuser %}
                                     <a href="{%url 'ventas:edit' venta.id%}"><button class="btn btn xs btn-warning">Editar</button></a>
                                 {% endif %}
                                 {% if request.user.is_superuser %}

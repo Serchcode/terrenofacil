@@ -42,7 +42,16 @@
     			<div class="list-group">
     				{% for registro in registros %}
                         {% if registro.cerrado == False %}
-                          <div class="list-group-item clearfix">
+                        <div class="list-group-item clearfix">
+                            <span class="badge" style="background-color: transparent; padding-left:5%;">
+                                {% if registro.status == "verde" %}
+                                    <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: #2ECC40;"></i>
+                                {% elif registro.status == "amarillo" %}
+                                   <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true" style="color: #FFDC00;"></i>
+                                {% else %}
+                                    <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: #FF4136;"></i>
+                                {% endif %}
+                            </span>
                             <span class="pull-left">
                             <h4 class="list-group-item-heading">{{registro.nombre}} {{registro.apellidos}}</h4>
                             <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
@@ -53,17 +62,27 @@
                                 {% if request.user.is_superuser %}
                                     <button class="btn btn xs btn-warning open-modal-close" data-toggle="modal" data-target="#myModalClose" id="{{registro.id}}" name="{{registro.nombre}}">Cerrar</button>
                                     <button class="btn btn xs btn-danger open-modal" data-toggle="modal" data-target="#myModalDelete" id="{{registro.id}}" name="{{registro.nombre}}">Eliminar</button>   
-                                {% endif %}
-                                
+                                {% endif %}                                
                             </span>
                         </div>
                         {% else %}
-                        <div class="list-group-item clearfix">
+                        <div class="list-group-item clearfix" style="position:relative;">
+                            <span class="badge" style="background-color: transparent; padding-left:5%;">
+                                {% if registro.status == "verde" %}
+                                    <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: #2ECC40;"></i>
+                                {% elif registro.status == "amarillo" %}
+                                   <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true" style="color: #FFDC00;"></i>
+                                {% else %}
+                                    <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: #FF4136;"></i>
+                                {% endif %}
+                            </span>
                             <span class="pull-left">
-                            <h4 class="list-group-item-heading">{{registro.nombre}}</h4>
+                            <h4 class="list-group-item-heading">{{registro.nombre}}
+                            </h4>
                             <p class="list-group-item-text">{{registro.fecha}} a las {{registro.hora}}</p>
                             </span>
                             <span class="pull-right">
+
                                 <a href="{%url 'seguimiento:detalle' registro.id%}">
                                 <button class="btn btn xs btn-success">Ver detalle</button></a>
                                 {% if request.user.is_superuser %}
