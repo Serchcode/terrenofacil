@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Venta(models.Model):
 	vendedor = models.ForeignKey(User,related_name='vendedor')
-	nombre = models.CharField(max_length=100)
+	nombres = models.CharField(max_length=100)
 	apellidos = models.CharField(max_length=140)
 	telefono = models.CharField(max_length=13)
 	telefono_alterno = models.CharField(max_length=16, blank=True, null=True)
