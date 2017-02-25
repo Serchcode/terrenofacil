@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
                     <li ><a style="color:#fff;" href="{%url 'seguimiento:registros'%}">REGISTROS</a></li>
-                    {% if request.user.is_superuser == false %}
+                    {% if request.user.is_superuser == False %}
                         <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
                         <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>         
                     {% endif %}     
