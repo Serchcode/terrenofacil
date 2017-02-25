@@ -24,7 +24,7 @@ class VerifyUser(View):
 class Registros	(View):
 	@method_decorator(login_required)
 	def get(self, request):
-		if request.user.is_superuser:
+		if request.user.is_staff:
 			template_name = "clientes/registros.html"
 			registros_list = Cliente.objects.all()
 			paginator = Paginator(registros_list, 10)
@@ -39,8 +39,9 @@ class Registros	(View):
 			counter = Cliente.objects.all().count()
 			context = {'registros':registros, 'counter':counter,'range':paginator.page_range}
 			return render(request, template_name, context)
-		elif request.user.is_staff and request.user.is_superuser == False:
-			return redirect('ventas:dashboard')
+		else:
+			#return redirect('ventas:dashboard')
+			raise PermissionDenied
 
 class Detalle (View):
 	@method_decorator(login_required)
