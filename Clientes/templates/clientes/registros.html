@@ -16,7 +16,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                 <li ><a style="color:#fff;" href="{%url 'main:home'%}">INICIO</a></li>
-
+                 <li ><a style="color:#fff;" href="{%url 'ventas:finalizadas'%}">VENTAS FINALIZADAS</a></li> 
                     {% if request.user.is_superuser == false %}
                         <li ><a style="color:#fff;" href="{%url 'ventas:dashboard'%}">DASHBOARD</a></li>
                         <li ><a style="color:#fff;" href="{%url 'ventas:create'%}">REGISTRAR VENTA</a></li>
