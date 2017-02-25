@@ -13,18 +13,18 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import EditRegistro, CommentsForm, ClienteForm, EditClientUser
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-class VerifyUser(View):
-	@method_decorator(login_required)
-	def get(self, request):
-		if request.user.is_superuser:
-			return redirect('seguimiento:registros')
-		else:
-			return redirect('ventas:dashboard')
+#class VerifyUser(View):
+#	@method_decorator(login_required)
+#	def get(self, request):
+#		if request.user.is_superuser:
+#			return redirect('seguimiento:registros')
+#		else:
+#			return redirect('ventas:dashboard')
 			
 class Registros	(View):
 	@method_decorator(login_required)
 	def get(self, request):
-		if request.user.is_staff:
+		if request.user.is_superuser:
 			template_name = "clientes/registros.html"
 			registros_list = Cliente.objects.all()
 			paginator = Paginator(registros_list, 10)
@@ -39,8 +39,8 @@ class Registros	(View):
 			counter = Cliente.objects.all().count()
 			context = {'registros':registros, 'counter':counter,'range':paginator.page_range}
 			return render(request, template_name, context)
-		else:
-			return redirect('seguimiento:dashboard')
+		elif request.user.is_staff and request.user.is_superuser == False:
+			return redirect('ventas:dashboard')
 
 class Detalle (View):
 	@method_decorator(login_required)
