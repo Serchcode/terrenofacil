@@ -3,6 +3,7 @@ from django.contrib.auth.views import login,logout,logout_then_login
 from . import views
 
 urlpatterns = [
+	url(r'^$',views.VerifyUser.as_view(), name="verify_users"),
 	url(r'^registros/$', views.Registros.as_view(), name="registros"),
 	url(r'^registros/(?P<id>\d+)$', views.Detalle.as_view(), name="detalle"),
 	url(r'^cerrar/(?P<id>\d+)$', views.Cerrar.as_view(), name="cerrar"),
